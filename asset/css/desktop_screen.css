@@ -1,6 +1,6 @@
 @import url('main.css');
 
-@media screen and (min-width: 768px)  {
+@media screen and (min-width: 992px) and (max-width: 1149px) {
     .single__banner
     {
         grid-template-columns: repeat(3, 1fr);
@@ -48,7 +48,9 @@
         position: relative;
     }
 }
-@media screen and (min-width: 1200px) 
+
+
+@media screen and (min-width: 1150px) 
 {
     /*=============== HEADER & NAV ===============*/
     

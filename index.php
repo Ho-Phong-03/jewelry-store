@@ -6,9 +6,10 @@
     <title>Document</title>
     <link rel="stylesheet" href="./asset/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="./asset/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./asset/css/mobile_screen.css">
     <link rel="stylesheet" href="./asset/css/styles.css">
-    <link rel="stylesheet" href="./asset/css/smallscreen.css">
-    <link rel="stylesheet" href="./asset/css/desktop.css">
+    <link rel="stylesheet" href="./asset/css/small_screen.css">
+    <link rel="stylesheet" href="./asset/css/desktop_screen.css">
     
     
 
@@ -735,11 +736,6 @@
             <i class="fa-solid fa-angles-up"></i>
         </a>
     </section>
-
-
-    
-
-
 
 
     <!-- <script src="./asset/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script> -->

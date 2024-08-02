@@ -1,6 +1,6 @@
 @import url('main.css');
 
-@media screen and (max-width: 767px)
+@media screen and (min-width: 380px) and (max-width: 767px)
 {
 
     /* ==================== SLIDER ==================== */
@@ -50,6 +50,18 @@
         margin-bottom: .38rem;
     }
     /* ==================== PRODUCT ==================== */
+    .box__image img
+    {
+        margin: 0 auto;
+    }
+    .product__navactive,
+    .sliders
+    {
+        max-width: 100%;
+    }
+    .box__sliders {
+        width: calc(100% / 3);
+    }
     .product__tab__button
     {
         margin: 0;
@@ -113,5 +125,11 @@
         padding: 0 1.07rem;
         margin-top: 1.25rem;
         line-height: 34px;
+    }
+
+    /* ===================== MODAL QUICK ================= */
+    .col-sm-12
+    {
+        margin-bottom: 1.9rem;
     }
 }

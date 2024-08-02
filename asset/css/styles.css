@@ -609,10 +609,10 @@
 {
     position: relative;
     grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
     place-items: center;
     align-items: center;
     place-content: center;
-    overflow-x: x;
 }
 .product__item
 {
@@ -624,6 +624,9 @@
 }
 .single__product
 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     transition: all .3s;
     margin-bottom: 1.9rem;
 }
@@ -765,6 +768,7 @@
     opacity: 1;
     transform: translateY(0);
     transition: transform .3s, opacity .3s;
+    z-index: var(--z-fixed);
 }
 .product__hover
 {
@@ -994,6 +998,10 @@
     grid-template-columns: repeat(2, 1fr);
 }
 /* =================== FOOTER ================== */
+.footer__widgets
+{
+    z-index: 0;
+}
 .footer__top
 {
     padding-bottom: 2.63rem;
@@ -1134,8 +1142,8 @@
     display: block;
     opacity: 0;
     pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.5); /* Điều chỉnh độ mờ nền modal */
-    transition: opacity 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
 }
 .modal.show__quick {
     opacity: 1;
@@ -1146,15 +1154,14 @@
     max-width: 730px;
 }
 .modal-content {
-    transform: translateY(-30px); /* Bắt đầu từ phía trên */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Hiệu ứng chuyển đổi mượt mà */
+    transform: translateY(-30px);
+    transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;
     pointer-events: none;
 }
 
-/* Khi modal hiển thị */
 .modal.show__quick .modal-content {
-    transform: translateY(0); /* Di chuyển xuống vị trí ban đầu */
+    transform: translateY(0); 
     opacity: 1;
     pointer-events: auto;
 }
@@ -1394,4 +1401,33 @@
 {
     opacity: 1;
     bottom: 3rem;
+}
+
+/* ============================== PRODUCT DETAIL ================================ */
+
+/* ===================== Breadcrumbs Area ===============*/
+.breadcrumbs__area
+{
+    padding: 2rem 0;
+}
+.breadcrumb__content ul
+{
+    line-height: 32px;
+}
+.breadcrumb__content ul li
+{
+    display: inline-block;
+    margin-right: .5rem;
+    text-transform: capitalize;
+    color: var(--site-link-hover-color);
+}
+
+.breadcrumb__content ul li:last-child
+{
+    color: var(--site-link-hover-color);
+    margin: 0;
+}
+.breadcrumb__content ul li a:hover
+{
+    color: var(--site-link-hover-color);
 }

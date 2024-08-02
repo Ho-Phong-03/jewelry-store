@@ -6,13 +6,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="./asset/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="./asset/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./asset/css/mobile_screen.css">
     <link rel="stylesheet" href="./asset/css/styles.css">
-    <link rel="stylesheet" href="./asset/css/desktop.css">
+    <link rel="stylesheet" href="./asset/css/small_screen.css">
+    <link rel="stylesheet" href="./asset/css/desktop_screen.css">
 </head>
 <body>
-    <!-- ==================== Header Area Start ==================== -->
+    <!-- ==================== Header Area Start =========================-->
     <header class="header" id="header">
-        <!--==================== HEADER TOP ====================-->
+        <!--================= Header Top ====================-->
         <nav class="nav__header__top">
             <div class="container">
                 <ul class="nav__list__top grid">
@@ -37,7 +39,8 @@
                 </ul>
             </div>
         </nav>
-        <!--==================== HEADER BUTTOM ====================-->
+
+        <!--================= Header Bottom =================-->
         <nav class="nav__header" id="nav-header">
             <div class="nav__header__menu container">
                 <!-- Toggle Button -->
@@ -74,14 +77,6 @@
                     <ul class="nav__list__menu__items">
                         <li>
                             <i class="header__btn__menu__search fa-solid fa-magnifying-glass" id="header-btn-menu-search"></i>
-                        </li>
-                        <li>
-                            <form action="" class="nav__form__search">
-                                <input type="text" name="nav__text__search" class="nav__inp__search" id="nav-text-search">
-                                <button class="nav__btn__menu__search" id="nav-btn-menu-search" type="submit">
-                                    <i class="nav__item btn__search fa-solid fa-magnifying-glass"></i>
-                                </button>
-                            </form>
                             <div class="nav__box__modal__search" id="nav-box-modal-search">
                                 <div class="nav__modal__search" id="nav-modal-search">
                                     <form  class="form__modal__search" id="modal-search">
@@ -171,16 +166,291 @@
             </div>
         </nav>
     </header>
-    <!-- ==================== Header Area End ====================== -->
+    <!-- ==================== Header Area End ===========================-->
 
 
-    <!-- ==================== Main Area Start ====================== -->
+    <!-- ==================== Main Area Start ===========================-->
     <main class="main">
-        <!-- =================== Breadcrumbs Area Start ======================= -->
+        <!-- ================ Breadcrumbs Area Start =========-->
+        <div class="breadcrumbs__area product__bread">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb__content">
+                        <ul>
+                            <li><a href="index.html">home</a></li>
+                            <li>&gt;</li>
+                            <li><a href="shop.html">shop</a></li>
+                            <li>&gt;</li>
+                            <li><a href="shop.html">Clothing</a></li>
+                            <li>&gt;</li>
+                            <li>product details</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>         
+        </div>
         
-        <!-- =================== Breadcrumbs Area End ========================= -->
+        <!-- ================ Product Detail Start ===========-->
+        <div class="product_details">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product-details-tab">
 
-        <!-- =================== Product Bestselling Start ==================== -->
+                        <div id="img-1" class="zoomWrapper single-zoom">
+                            <a href="#">
+                                <img id="zoom1" src="assets/img/product/product1-big.jpg" data-zoom-image="assets/img/product/product1-big.jpg" alt="big-1">
+                            </a>
+                        </div>
+
+                        <div class="single-zoom-thumb">
+                            <ul class="s-tab-zoom owl-carousel single-product-active owl-loaded owl-drag" id="gallery_01">
+                                
+                                <div class="owl-stage-outer">
+                                    <div class="owl-stage" style="transform: translate3d(-377px, 0px, 0px); transition: all; width: 1257px;">
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product1-big.jpg" data-zoom-image="assets/img/product/product1-big.jpg">
+                                                    <img src="assets/img/product/product13.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product3-big.jpg" data-zoom-image="assets/img/product/product3-big.jpg">
+                                                    <img src="assets/img/product/product4.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product2-big.jpg" data-zoom-image="assets/img/product/product2-big.jpg">
+                                                    <img src="assets/img/product/product2.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product2-big.jpg" data-zoom-image="assets/img/product/product2-big.jpg">
+                                                    <img src="assets/img/product/product2.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product1-big.jpg" data-zoom-image="assets/img/product/product1-big.jpg">
+                                                    <img src="assets/img/product/product13.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item active" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product3-big.jpg" data-zoom-image="assets/img/product/product3-big.jpg">
+                                                    <img src="assets/img/product/product4.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product2-big.jpg" data-zoom-image="assets/img/product/product2-big.jpg">
+                                                    <img src="assets/img/product/product2.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product2-big.jpg" data-zoom-image="assets/img/product/product2-big.jpg">
+                                                    <img src="assets/img/product/product2.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product1-big.jpg" data-zoom-image="assets/img/product/product1-big.jpg">
+                                                    <img src="assets/img/product/product13.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                        <div class="owl-item cloned" style="width: 110.667px; margin-right: 15px;">
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="assets/img/product/product3-big.jpg" data-zoom-image="assets/img/product/product3-big.jpg">
+                                                    <img src="assets/img/product/product4.jpg" alt="zo-th-1">
+                                                </a>
+                                            </li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="owl-nav">
+                                    <div class="owl-prev">
+                                        <i class="fa fa-angle-left"></i>
+                                    </div>
+                                    <div class="owl-next">
+                                        <i class="fa fa-angle-right"></i>
+                                    </div>
+                                </div>
+                                <div class="owl-dots disabled"></div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product_d_right">
+                       <form action="#">
+                           
+                            <h1>Donec eu furniture</h1>
+                            <div class="product_nav">
+                                <ul>
+                                    <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
+                                    <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class=" product_ratting">
+                                <ul>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    <li><a href="#"> (customer review ) </a></li>
+                                </ul>
+                            </div>
+                            <div class="product_price">
+                                <span class="old_price">$80.00</span>
+                                <span class="current_price">$70.00</span>
+                            </div>
+                            <div class="product_desc">
+                                <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
+                            </div>
+
+                            <div class="product_variant quantity">
+                                <label>quantity</label>
+                                <input min="1" max="100" value="1" type="number">
+                                <button class="button" type="submit">add to cart</button>  
+                                
+                            </div>
+                            <div class=" product_d_action">
+                               <ul>
+                                   <li><a href="#" title="" data-original-title="Add to wishlist">+ Add to Wishlist</a></li>
+                                   <li><a href="#" title="" data-original-title="Add to wishlist">+ Compare</a></li>
+                               </ul>
+                            </div>
+                            <div class="product_meta">
+                                <span>Category: <a href="#">Clothing</a></span>
+                            </div>
+                            
+                        </form>
+                        <div class="priduct_social">
+                            <ul>
+                                <li><a href="#" title="" data-original-title="facebook"><i class="fa fa-facebook"></i></a></li>           
+                                <li><a href="#" title="" data-original-title="twitter"><i class="fa fa-twitter"></i></a></li>           
+                                <li><a href="#" title="" data-original-title="pinterest"><i class="fa fa-pinterest"></i></a></li>           
+                                <li><a href="#" title="" data-original-title="google +"><i class="fa fa-google-plus"></i></a></li>        
+                                <li><a href="#" title="" data-original-title="linkedin"><i class="fa fa-linkedin"></i></a></li>        
+                            </ul>      
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>    
+        </div>
+
+
+        <!-- ================ Product Info Start =============-->
+        <div class="product_d_info">
+        <div class="container">   
+            <div class="row">
+                <div class="col-12">
+                    <div class="product_d_inner">   
+                        <div class="product_info_button">    
+                            <ul class="nav" role="tablist">
+                                <li>
+                                    <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">Description</a>
+                                </li>
+                                <li>
+                                   <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">Reviews (1)</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                <div class="product_info_content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>
+                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et, luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.</p>
+                                </div>    
+                            </div>
+
+                            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                <div class="reviews_wrapper">
+                                    <h2>1 review for Donec eu furniture</h2>
+                                    <div class="reviews_comment_box">
+                                        <div class="comment_thmb">
+                                            <img src="assets/img/blog/comment2.jpg" alt="">
+                                        </div>
+                                        <div class="comment_text">
+                                            <div class="reviews_meta">
+                                                <div class="star_rating">
+                                                    <ul>
+                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                    </ul>   
+                                                </div>
+                                                <p><strong>admin </strong>- September 12, 2018</p>
+                                                <span>roadthemes</span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="comment_title">
+                                        <h2>Add a review </h2>
+                                        <p>Your email address will not be published.  Required fields are marked </p>
+                                    </div>
+                                    <div class="product_ratting mb-10">
+                                       <h3>Your rating</h3>
+                                        <ul>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="product_review_form">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="review_comment">Your review </label>
+                                                    <textarea name="comment" id="review_comment"></textarea>
+                                                </div> 
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="author">Name</label>
+                                                    <input id="author" type="text">
+
+                                                </div> 
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="email">Email </label>
+                                                    <input id="email" type="text">
+                                                </div>  
+                                            </div>
+                                            <button type="submit">Submit</button>
+                                         </form>   
+                                    </div> 
+                                </div>    
+                            </div>
+                        </div>
+                    </div>     
+                </div>
+            </div>
+        </div>    
+        </div>
+
+
+        <!-- =========== Product Bestselling Start ===========-->
         <section class="product__section border__section section">
             <div class="product__container container grid">
                 <div class="product__area">
@@ -200,7 +470,7 @@
                     
                     <div class="product__list__section ">
                         <div class="grid product__list__slider">
-                            <?php for($i = 1; $i <= 5; $i++) { ?>
+                            <?php for($i = 1; $i <= 10; $i++) { ?>
                             <article>
                                 <div class="product__item">
                                     <div class="single__product">
@@ -291,12 +561,12 @@
                 </div>
             </div>
         </section>
-        <!-- =================== Product Bestselling End ====================== -->
+
     </main>
-    <!-- ==================== Main Area End ======================== -->
+    <!-- ==================== Main Area End =========================== -->
 
     
-    <!-- ==================== Footer Area Start ==================== -->
+    <!-- ==================== Footer Area Start ======================= -->
     <footer class="footer__widgets">
         <div class="container">  
             <div class="footer__top">
@@ -423,10 +693,9 @@
             </div>
         </div>     
     </footer>
-    <!-- ==================== Footer Area End ====================== -->
 
 
-    <!-- ==================== Modal Area Start ===================== -->
+    <!-- ==================== Modal Area Start ======================= -->
     <section class="modal" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content modal__content" id="modal-content">
@@ -504,7 +773,14 @@
             </div>
         </div>
     </section>
-    <!-- ==================== Modal Area End ======================= -->
+
+    <!-- ==================== ScrollUp Area Start ========================== -->
+    <section class="box__scrollup">
+        <a href="#" class="scroll__up" id="scroll-up">
+            <i class="fa-solid fa-angles-up"></i>
+        </a>
+    </section>
+
 
 
     <script src="./asset/bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
