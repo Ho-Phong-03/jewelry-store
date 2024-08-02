@@ -1,0 +1,110 @@
+@import url('main.css');
+
+@media screen and (max-width: 767px)
+{
+
+    /* ==================== SLIDER ==================== */
+
+    .carousel-caption p 
+    {
+        margin-bottom: .38rem;
+        color: var(--text-color);
+    }
+    .carousel-caption h1
+    {
+        line-height: 26px;
+        margin-bottom: .94rem;
+        font-size: var(--h1-font-size);
+    }
+    .carousel-caption .slider__price
+    {
+        font-size: .81rem;
+        margin-bottom: 1.8rem;
+    }
+    .slider__price span
+    {
+        font-size:var(--normal-font-size) ;
+    }
+    .slider__btn
+    {
+        height: 40px;
+        list-style: 40px;
+        padding: 0 1.25rem;
+        font-size: var(--small-font-size);
+        margin: 0;
+    }
+    /* ==================== BANNER ==================== */
+    .single__banner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .banner__content h2
+    {
+        font-weight: var(--font-semi-bold);
+        margin-bottom: .38rem;
+    }
+    /* ==================== PRODUCT ==================== */
+    .product__tab__button
+    {
+        margin: 0;
+    }
+    .product__button__list
+    {
+        display: grid;
+        gap: .5rem;
+    }
+    .product__button__list::after,
+    .product__button__list::before
+    {
+        display: none;
+    }
+    .product__button__list li
+    {
+        width: 100%;
+    }
+    .product__button
+    {
+        line-height: 40px;
+        font-size: 1rem;
+        min-width: 190px;
+        border: 2px solid var(--site-border-color);
+    }
+    .active__product
+    {
+        color: var(--site-link-hover-color);
+        border-color: var(--site-link-hover-color);
+    }
+    .product__list__slider 
+    {
+        grid-template-columns: repeat(2, 1fr);
+        gap: .8rem;
+    }
+    .tag__cate
+    {
+        font-size: var(--small-font-size);
+    }
+    /* ==================== BANNER FULL ==================== */
+    .banner__section
+    {
+        padding-bottom: 3.44rem;
+    }
+    .banner__items 
+    {
+        height: 350px;
+    }
+    .banner__text p
+    {
+        font-size: var(--normal-font-size);
+    }
+    .banner__text h2
+    {
+        line-height: 42px;
+        font-size: 1.38rem;
+    }
+    .banner__text a
+    {
+        font-size: var(--small-font-size);
+        padding: 0 1.07rem;
+        margin-top: 1.25rem;
+        line-height: 34px;
+    }
+}
