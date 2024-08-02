@@ -737,11 +737,7 @@
     </section>
 
 
-    <section class="box__scrollup">
-        <a href="#" class="scroll__up" id="scroll-up">
-            <i class="fa-solid fa-angles-up"></i>
-        </a>
-    </section>
+    
 
 
 
