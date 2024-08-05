@@ -37,15 +37,29 @@
     }
     .product__navactive
     {
-    max-width: 400px;
-    width: 100%;
-    position: relative;
-    z-index: 2;
+        max-width: 400px;
+        width: 100%;
+        position: relative;
+        z-index: 2;
     }
-    .sliders {
+    .product__sliders 
+    {
         max-width: 400px;
         overflow: hidden;
         position: relative;
+    }
+    /* ====================== ZOOM IMG ================ */
+    .slider__detail__image {
+        flex: 0 0 calc(33.333% - 7.5px); 
+    }
+    /* =============== CONTENT PRODUCT ========== */
+    .product__variant input 
+    {
+        width: 110px;
+    }
+    .product__variant .button
+    {
+        min-width: 240px;
     }
 }
 
@@ -171,6 +185,57 @@
     .banner__items
     {
     height: 500px;
+    }
+    /* ===================== FOOTER ======================= */
+    .footer__middel__menu ul
+    {
+        gap: 3.5rem;
+    }
+    /* ===================== MODAL AREA =================== */
+    .modal-dialog
+    {
+        max-width: 900px;
+    }
+    .modal__body {
+        padding: 2.4rem 1.9rem;
+    }
+    .modal__social ul li
+    {
+        display: inline-block;
+        margin-right: .5rem;
+    }
+    .modal__social ul li a
+    {
+        width: 45px;
+        height: 45px;
+        line-height: 45px;
+    }
+    .product__navactive
+    {
+        max-width: 400px;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    .product__sliders 
+    {
+        max-width: 400px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .slider__detail__image {
+        flex: 0 0 calc(25% - 7.5px); 
+    }
+
+    /* =============== CONTENT PRODUCT ========== */
+    .product__variant input 
+    {
+        width: 130px;
+    }
+    .product__variant .button
+    {
+        min-width: 260px;
     }
 }
 

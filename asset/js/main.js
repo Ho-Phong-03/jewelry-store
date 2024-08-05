@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navHeader = document.getElementById('nav-header');
     const fixedClass = 'fixed-header';
-    const scrollThreshold = 50;
+    const scrollThreshold = 550;
 
     window.addEventListener('scroll', function() {
         if (window.scrollY > scrollThreshold) {
@@ -108,47 +108,10 @@ btnProduct.forEach(button => {
     });
 });
 
-// =================== SLIDER PRODUCT =====================
-// const btnPdLeft = document.getElementById('btn-pd-left');
-// const btnPdRight = document.getElementById('btn-pd-right');
-// const sliders = document.querySelector('.sliders');
-// const boxSliders = document.querySelector('.box__sliders');
-// const sliderImages = document.querySelectorAll('.slider__image');
-// let count = 0; // Biến đếm để theo dõi vị trí hiện tại của slider
-
-// // Số lượng ảnh hiển thị trong một lần
-// const imagesToShow = 4;
-
-
-// // Số lượng hình ảnh có thể cuộn qua lại
-// const maxCount = sliderImages.length - imagesToShow;
-
-// btnPdLeft.addEventListener('click', () => {
-//     count--;
-//     if (count < 0) {
-//         count = maxCount; // Quay về ảnh cuối cùng nếu đang ở đầu tiên
-//     }
-//     updateSlider();
-// });
-
-// btnPdRight.addEventListener('click', () => {
-//     count++;
-//     if (count > maxCount) {
-//         count = 0; // Quay về ảnh đầu tiên nếu đang ở cuối cùng
-//     }
-//     updateSlider();
-// });
-
-// // Hàm cập nhật vị trí của slider
-// function updateSlider() {
-//     const offset = count * -sliders.offsetWidth/ imagesToShow; // Tính toán vị trí di chuyển dựa trên chiều rộng của một hình ảnh
-//     boxSliders.style.transform = `translateX(${offset}px)`;
-// }
-
-
+// =================== SLIDER PRODUCT QUICK VIEW =====================
 const btnPdLeft = document.getElementById('btn-pd-left');
 const btnPdRight = document.getElementById('btn-pd-right');
-const sliders = document.querySelector('.sliders');
+const sliders = document.querySelector('.product__sliders');
 const boxSliders = document.querySelector('.box__sliders');
 const sliderImages = document.querySelectorAll('.slider__image');
 let count = 0; // Biến đếm để theo dõi vị trí hiện tại của slider
@@ -236,3 +199,89 @@ window.addEventListener('scroll', () => {
     btnScrollUp.classList.toggle('show__scrollUp', window.scrollY > 120);
 });
 
+
+
+// ================== ZOOM PRODUCT ================
+document.addEventListener('DOMContentLoaded', () => {
+    const zoomWrapper = document.querySelector('.zoomWrapper');
+    const zoomedImage = document.querySelector('.zoomedImage');
+    const img = document.getElementById('zoom1');
+    const zoomFactor = 1; // Độ phóng to
+
+    zoomWrapper.addEventListener('mousemove', (event) => {
+        const rect = zoomWrapper.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        // Hiển thị zoomedImage và đặt vị trí
+        zoomedImage.style.display = 'block';
+        zoomedImage.style.backgroundImage = `url(${img.src})`;
+        zoomedImage.style.backgroundPosition = `-${x * zoomFactor}px -${y * zoomFactor}px`;
+    });
+
+    zoomWrapper.addEventListener('mouseout', () => {
+        // Ẩn zoomedImage khi chuột ra ngoài
+        zoomedImage.style.display = 'none';
+    });
+});
+
+
+// ===================== SLIDERS PRODUCT ===============
+
+document.addEventListener('DOMContentLoaded', function () {
+    const btnDetailLeft = document.getElementById('btn-detail-left');
+    const btnDetailRight = document.getElementById('btn-detail-right');
+    const sliders = document.querySelector('.product__detail__sliders');
+    const boxSliders = document.querySelector('.box__detail__sliders');
+    const sliderImages = document.querySelectorAll('.slider__detail__image');
+    let count = 0; // Biến đếm để theo dõi vị trí hiện tại của slider
+    let imagesToShow = 2; // Số lượng ảnh hiển thị mặc định
+
+    // Cập nhật số lượng ảnh hiển thị và tính toán số lượng hình ảnh có thể cuộn qua lại
+    function updateImagesToShow() {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth <= 379) {
+            imagesToShow = 2;
+        } else if (screenWidth >= 380 && screenWidth <= 768) {
+            imagesToShow = 2;
+        } else if (screenWidth >= 992 && screenWidth <= 1149) {
+            imagesToShow = 3;
+        } else {
+            imagesToShow = 4;
+        }
+
+        // Đảm bảo không trượt quá số lượng hình ảnh
+        count = Math.min(count, sliderImages.length - imagesToShow);
+        updateSlider(); // Cập nhật lại vị trí của slider
+    }
+
+    // Lắng nghe sự kiện resize để cập nhật số lượng hình ảnh hiển thị
+    window.addEventListener('resize', updateImagesToShow);
+
+    // Cập nhật số lượng hình ảnh hiển thị khi tải trang
+    updateImagesToShow();
+
+    btnDetailLeft.addEventListener('click', () => {
+        count--;
+        if (count < 0) {
+            count = sliderImages.length - imagesToShow; // Quay về cuối cùng
+        }
+        updateSlider();
+    });
+
+    btnDetailRight.addEventListener('click', () => {
+        count++;
+        if (count > sliderImages.length - imagesToShow) {
+            count = 0; // Quay về đầu tiên
+        }
+        updateSlider();
+    });
+
+    // Hàm cập nhật vị trí của slider
+    function updateSlider() {
+        const slideWidth = sliderImages[0].offsetWidth + parseFloat(getComputedStyle(sliderImages[0]).marginRight);
+        const offset = count * -slideWidth; // Tính toán vị trí di chuyển dựa trên chiều rộng của một hình ảnh
+        boxSliders.style.transform = `translateX(${offset}px)`;
+    }
+});

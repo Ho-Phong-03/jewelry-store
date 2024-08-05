@@ -132,4 +132,83 @@
     {
         margin-bottom: 1.9rem;
     }
+    .product__navactive
+    {
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    .product__sliders 
+    {
+        max-width: 400px;
+        
+        overflow: hidden;
+        position: relative;
+    }
+    .box__sliders {
+        width: calc(100% / 3);
+    }
+    /* ====================== ZOOM IMG ================ */
+    .product-details-tab
+    {
+        margin-bottom: 3.5rem;
+    }
+    .product__detail__navactive 
+    {
+        width: 100%;
+    }
+
+    /* =============== CONTENT PRODUCT ========== */
+    .product__right h1
+    {
+        font-size: var(--h1-font-size);
+    }
+    .product__ratting
+    {
+        margin-bottom: .75rem;
+    }
+    .product__price
+    {
+        margin-bottom: 1rem;
+    }
+    .box__desc
+    {
+        padding-bottom: 1.4rem;
+        margin-bottom: 1.9rem;
+    }
+    .product__variant label
+    {
+        font-weight: var(--font-semi-bold);
+    }
+    .product__variant 
+    {
+        margin-bottom: 1rem;
+    }
+    .product__variant input,
+    .product__variant .button
+    {
+        min-width: inherit;
+        margin-left: .625rem;
+    }
+    .product__meta span
+    {
+        font-weight: var(--font-semi-bold);
+    }
+    .priduct_social ul li a
+    {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+    /* =============== PRODUCT INFO =============== */
+    .product__info__button ul li a
+    {
+        font-size: calc(var(--normal-font-size) + .2rem);
+    }
+    .tab-content
+    {
+        padding-top: 1.25rem;
+    }
 }

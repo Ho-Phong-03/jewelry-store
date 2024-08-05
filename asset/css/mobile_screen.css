@@ -1,5 +1,12 @@
+@import url('main.css');
+
+
 @media screen and (max-width: 379px) 
 {
+    .nav__header__top
+    {
+        display: none;
+    }
 
     .carousel-caption p 
     {
@@ -11,8 +18,14 @@
         margin-bottom: 1.5rem;
     }
 
-    .product__list__slider {
-        grid-template-columns: repeat(1, 1fr);
+    .product__list__slider 
+    {
+        position: relative;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 1rem;
+    place-items: center;
+    align-items: center;
+    place-content: center;
     }
     .primary__img
     {
@@ -21,14 +34,34 @@
         justify-content: center;
         width: 222px;
     }
-    .product__navactive,
-    .sliders
+    /* ===================== MODAL QUICK ================= */
+    .product__navactive
     {
-        max-width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 2;
     }
-    .box__sliders 
+    .product__sliders 
     {
-        width: calc(100% / 2);
+        max-width: 400px;
+        
+        overflow: hidden;
+        position: relative;
     }
+    .box__sliders {
+        width: calc(100% / 2) !important;
+    }
+
+
+
+
+
+
+
+
+
+
 
 }
