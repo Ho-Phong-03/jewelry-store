@@ -1000,7 +1000,7 @@
 /* =================== FOOTER ================== */
 .footer__widgets
 {
-    z-index: 0;
+    border-top: 1px solid #ededed;
 }
 .footer__top
 {
@@ -1411,6 +1411,17 @@
     padding: 2rem 0;
     border-bottom: 1px solid #ebebeb;
     border-top: 1px solid #ebebeb;
+}
+.breadcrumb__content
+{
+    text-align: center;
+}
+.breadcrumb__content h3
+{
+    text-transform: capitalize;
+    font-weight: var(--font-semi-bold);
+    font-size: 2.25rem;
+    line-height: 48px;
 }
 .breadcrumb__content ul
 {
@@ -1865,4 +1876,360 @@
     cursor: pointer;
     margin-top: 1.25rem;
     border-radius: .3rem;
+}
+
+/* ================================= SHOPPING CART ======================== */
+.table__desc
+{
+    border: 1px solid #ebebeb;
+    margin-bottom: 4.4rem;
+    margin-top: .125rem;
+}
+.cart__page
+{
+    overflow-x: auto;
+}
+.cart__table
+{
+    width: 100%;
+    caption-side: bottom;
+    border-collapse: collapse;
+    font-weight: var(--font-semi-bold);
+    transition: all .3s ease;
+}
+.cart__table thead
+{
+    background: #f2f2f2;
+}
+.cart__table thead tr th
+{
+    border-bottom: 3px solid #c09578;
+    font-weight: 700;
+    font-family: var(--second-font);
+    text-transform: capitalize;
+    padding: .625rem;
+    text-align: center;
+}
+.cart__table tbody tr td
+{
+    
+    border-bottom: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+    text-align: center;
+    padding: .625rem;
+    transition: all .3s ease;
+
+}
+.cart__table tbody tr td a
+{
+    text-transform: capitalize;
+    font-weight: var(--font-regular);
+    transition: all .3s ease;
+}
+.product_remove
+{
+    min-width: 100px;
+}
+.product_remove i:hover
+{
+    color: var(--site-link-hover-color);
+}
+.product_thumb,
+.product_name,
+.product_quantity
+{
+    max-width: 180px;
+}
+.product-price
+{
+    max-width: 130px;
+}
+.product_total
+{
+    max-width: 150px;
+}
+.product_name a:hover
+{
+    color: var(--site-link-hover-color);
+}
+.product_quantity label
+{
+    margin-right: .34rem;
+}
+.product_quantity input
+{
+    width: 60px;
+    height: 40px;
+    padding: 0 .34rem 0 .625rem;
+    border: 1px solid #ebebeb;
+    transition: all .3s ease;
+}
+.cart__submit
+{
+    text-align: right;
+    padding: .75rem;
+}
+.cart__submit button
+{
+    background: var(--title-color);
+    color: var(--while);
+    display: inline-block;
+    font-weight: var(--font-semi-bold);
+    font-size: .75rem;
+    height: 38px;
+    line-height: 18px;
+    padding: .625rem .94rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: .2rem;
+    transition: all .3s ease;
+}
+.cart__submit button:hover
+{
+    background: var(--site-link-hover-color);
+}
+.coupon__area
+{
+    margin-bottom: 4.4rem;
+}
+.coupon__code
+{
+    border: 1px solid #ebebeb;
+}
+.coupon__code h3
+{
+    color: var(--while);
+    line-height: 37px;
+    padding: .34rem .94rem;
+    background: var(--title-color);
+    text-transform: uppercase;
+    font-weight: var(--font-semi-bold);
+    font-size: calc (var(--h3-font-size) - .125rem);
+}
+.coupon__inner
+{
+    padding: .625rem 1.25rem 1.6rem;
+}
+.coupon__inner p 
+{
+    color: var(--kitify-body-color);
+    font-size: .82rem;
+    margin-bottom: 1.25rem;
+}
+.coupon__inner input 
+{
+    width: 100%;
+    margin-bottom: 2.4rem;
+    border: 1px solid #ebebeb;
+    height: 42px;
+    padding: 0 20px;
+    margin-right: 1.25rem;
+    color: var(--kitify-body-color);
+}
+.coupon__inner button {
+    background: var(--title-color);
+    color: var(--while);
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: var(--font-semi-bold);
+    height: 38px;
+    line-height: 18px;
+    padding: .34rem .94rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: .2rem;
+    transition: all .3s ease;
+}
+.coupon__inner button:hover
+{
+    background-color: var(--site-link-hover-color);
+}
+.cart__subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart__subtotal p
+{
+    font-weight: var(--font-semi-bold);
+    font-size: .875rem;
+}
+.cart__subtotal p.cart__amount
+{
+    font-size: 1.125rem;
+    font-weight: var(--font-medium);
+}
+.cart__subtotal p span 
+{
+    margin-right: 1.875rem;
+}
+.coupon__inner a 
+{
+    display: block;
+    text-align: right;
+    color: var(--site-link-hover-color);
+    font-size: .875rem;
+    font-weight: var(--font-medium);
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #ebebeb;
+    padding-bottom: .34rem;
+    border-radius: .2rem;
+    transition: all .3s ease;
+}
+.checkout__btn {
+    text-align: right;
+}
+.checkout__btn a {
+    background: var(--site-link-hover-color);
+    color: var(--while);
+    font-size: 1rem;
+    padding: .2rem .875rem;
+    line-height: 30px;
+    font-weight: var(--font-medium);
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+
+.checkout__btn a:hover
+{
+    background-color: var(--title-color);
+}
+
+/* ======================== CHECK OUT ===================== */
+.Checkout__section
+{
+    margin-bottom: 4.125rem;
+}
+.checkout__form h3
+{
+    font-size: 1rem;
+    line-height: 30px;
+    padding: .34rem .625rem;
+    text-transform: uppercase;
+    color: var(--while);
+    background: var(--title-color);
+    font-weight: var(--font-semi-bold);
+}
+.mb-20
+{
+    margin-bottom: 1.25rem;
+}
+.checkout__form label {
+    color: var(--kitify-body-color);
+    font-family: var(--second-font);
+    font-weight: 700;
+    margin-bottom: .44rem;
+}
+.checkout__form label span {
+    color: var(--site-link-hover-color);
+}
+.checkout__form input {
+    border: 1px solid #ebebeb;
+    background: none;
+    height: 40px;
+    width: 100%;
+    padding: 0 1.25rem;
+    color: var(--old-price-color);
+    transition: all 3.s ease;
+
+}
+.order__notes textarea 
+{
+    border: 1px solid #e5e5e5;
+    border-radius: 0;
+    height: 50px;
+    max-width: 100%;
+    padding: 0 1.9rem 0 1.25rem;
+    background: none;
+    font-size: .82rem;
+    resize: none;
+    line-height: 45px;
+    width: 100%;
+    color: var(--old-price-color);
+}
+.order__table
+{
+    margin-bottom: 2.2rem;
+}
+.order__table table
+{
+    width: 100%;
+}
+.table__responsive table thead 
+{
+    background: #f2f2f2;
+}
+.table__responsive table thead tr th 
+{
+    text-align: center;
+    color: var(--title-color);
+    font-family:  var(--second-font);
+    padding: .94rem 0;
+    border-bottom: 1px solid #ddd;
+}
+.table__responsive table tbody tr td {
+    border-right: 1px solid #ebebeb;
+    color: var(--title-color);
+    font-weight: var(--font-medium);
+    text-transform: capitalize;
+    font-size: .875rem;
+    text-align: center;
+    min-width: 150px;
+    padding: .94rem 0;
+    border-bottom: 1px solid #ddd;
+}
+.order__table table tfoot tr th {
+    color: var(--title-color);
+    font-family: var(--second-font);
+}
+.order__table table tfoot tr th,
+.order__table table tfoot tr td {
+    min-width: 50%;
+    text-align: center;
+    padding: .94rem 0;
+    border-bottom: 1px solid #ddd;
+}
+.panel__default input
+{
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: .125rem;
+    margin-right: .63rem;
+    border: 1px solid #ebebeb;
+    background: none;
+    padding: 0 1.25rem;
+    transition: all .3s ease;
+}
+.panel__default label {
+    color: var(--title-color);
+    font-family: var(--second-font);
+    font-weight: 700;
+    margin-bottom: .44rem;
+    display: inline-block;
+}
+.panel__default label img
+{
+    width: 160px;
+    display: inline-block;
+}
+.order__button button {
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 30px;
+    padding: .34rem .625rem;
+    text-transform: capitalize;
+    color: var(--while);
+    background: #c09578;
+    font-weight: var(--font-semi-bold);
+    transition: 0.3s;
+    margin-bottom: 0;
+    border-radius: .2rem;
+}
+.order__button button:hover
+{
+    background: var(--title-color);
 }

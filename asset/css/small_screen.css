@@ -211,4 +211,27 @@
     {
         padding-top: 1.25rem;
     }
+
+    /* ============== CART AREA =================== */
+
+    .breadcrumb__content h3 
+    {
+        font-size: 1.6rem;
+        line-height: 22px;
+        margin-bottom: .94rem;
+    }
+    .table__desc,
+    .coupon__code
+    {
+        margin-bottom: 3.75rem;
+    }
+    .coupon__area 
+    {
+        margin-bottom: 0;
+    }
+    .coupon__inner input
+    {
+        width: 100%;
+        margin-bottom: 2.4rem;
+    }
 }

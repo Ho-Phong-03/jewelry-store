@@ -113,9 +113,10 @@ input{
     margin-bottom: 2rem;
 }
 
-.main {
+/* .main {
     overflow: hidden;
-}
+    height: auto;
+} */
 @media screen and (max-width: 379px) {
 
     :root
