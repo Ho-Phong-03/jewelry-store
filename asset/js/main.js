@@ -22,6 +22,7 @@ const btnToggle = document.getElementById('nav-toggle');
 const btnClose = document.getElementById('nav-close');
 const navModal = document.getElementById('nav-modal-menu');
 const navMenu = document.getElementById('nav-menu');
+// const navList = document.querySelectorAll('.nav__list .nav__link');
 
 // Menu Show
 btnToggle.addEventListener('click', () => {
@@ -42,6 +43,18 @@ const clickModalMenu = function(e){
     }
 }
 window.addEventListener('click', clickModalMenu);
+
+const navLinks = document.querySelectorAll('.nav__link');
+
+navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+        // Xóa class 'active' khỏi tất cả các liên kết
+        navLinks.forEach(nav => nav.classList.remove('active'));
+        
+        // Thêm class 'active' vào liên kết được nhấp
+        this.classList.add('active');
+    });
+});
 
 // ====================== SHOW SEARCH MINI =======================
 const btnSearch = document.getElementById('header-btn-menu-search');
@@ -284,4 +297,88 @@ document.addEventListener('DOMContentLoaded', function () {
         const offset = count * -slideWidth; // Tính toán vị trí di chuyển dựa trên chiều rộng của một hình ảnh
         boxSliders.style.transform = `translateX(${offset}px)`;
     }
+});
+
+
+// ============== Price Range =============
+const rangeInput = document.querySelectorAll('.range__input input');
+const priceInput = document.querySelectorAll('.aside__price__input input');
+const progress = document.querySelector('.ui__sider__corner__all .ui__sider__pange');
+const priceGap = 1000;
+
+priceInput.forEach(input =>{
+    input.addEventListener("input", e => {
+        let minVal = parseInt(priceInput[0].value);
+        let maxVal = parseInt(priceInput[1].value);
+
+        if((maxVal - minVal >= priceGap) && maxVal <= 10000 )
+        {
+            if(e.target.className === "input__min")
+            {   
+                rangeInput[0].value = minVal;
+                progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+            }
+            else{
+                rangeInput[1].value = maxVal;
+                progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+            }
+        }        
+    });
+});
+
+rangeInput.forEach(input =>{
+    input.addEventListener("input", e => {
+        let minVal = parseInt(rangeInput[0].value);
+        let maxVal = parseInt(rangeInput[1].value);
+
+        if(maxVal - minVal < priceGap )
+        {
+            if(e.target.className === "range__min")
+            {   
+                rangeInput[0].value = maxVal - priceGap;
+            }
+            else{
+                rangeInput[1].value = minVal + priceGap;
+            }
+        }else{
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+            progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+
+        }
+        
+        
+    });
+});
+
+
+// =============== FILTER BAR MINI =================
+const   openFilter = document.getElementById('open-filters'),
+        miniBar = document.getElementById('mini-bars'),
+        miniXmark = document.getElementById('mini-xmark'),
+        miniSidebarProduct = document.getElementById('sidebar-product');
+
+openFilter.addEventListener('click', () =>{
+    if (miniBar.style.display !== 'none') {
+        miniBar.style.display = 'none';
+        miniXmark.style.display = 'inline';
+    } else {
+        miniBar.style.display = 'inline';
+        miniXmark.style.display = 'none';
+    }
+
+    if (openFilter.style.right === '0px' || openFilter.style.right === '') {
+        openFilter.style.right = '260px';
+    } else {
+        openFilter.style.right = '0px';
+    }
+
+    if(miniSidebarProduct.style.transform === 'translateX(100%)' || miniSidebarProduct.style.transform === '')
+    {
+        miniSidebarProduct.style.transform = 'translateX(0)';
+    }else{
+        miniSidebarProduct.style.transform = 'translateX(100%)';
+    }
+
 });
