@@ -1,0 +1,87 @@
+@import url('main.css');
+
+
+@media screen and (max-width: 379px) 
+{
+    .nav__header__top
+    {
+        display: none;
+    }
+
+    .carousel-caption p 
+    {
+        width: 50%;
+        font-size: .9rem;
+    }
+    .carousel-caption .slider__price 
+    {
+        margin-bottom: 1.5rem;
+    }
+
+    .product__list__slider 
+    {
+        position: relative;
+    grid-template-columns: repeat(1, 1fr) !important;
+    gap: 1rem;
+    place-items: center;
+    align-items: center;
+    place-content: center;
+    }
+    .primary__img
+    {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        width: 222px;
+    }
+    /* ===================== MODAL QUICK ================= */
+    .product__navactive
+    {
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+    .product__sliders 
+    {
+        max-width: 400px;
+        
+        overflow: hidden;
+        position: relative;
+    }
+    .box__sliders {
+        width: calc(100% / 2) !important;
+    }
+
+    /* ============== CART AREA =================== */
+
+    .breadcrumb__content h3 
+    {
+        font-size: 1.6rem;
+        line-height: 22px;
+        margin-bottom: .94rem;
+    }
+    .table__desc,
+    .coupon__code
+    {
+        margin-bottom: 3.75rem;
+    }
+    .coupon__area 
+    {
+        margin-bottom: 0;
+    }
+    .coupon__inner input
+    {
+        width: 100%;
+        margin-bottom: 2.4rem;
+    }
+
+
+
+
+
+
+
+
+}
