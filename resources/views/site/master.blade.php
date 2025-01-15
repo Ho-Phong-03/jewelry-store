@@ -7,10 +7,12 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{asset('../asset/users')}}/fontawesome-free-6.5.2-web/css/all.min.css">
     <link rel="stylesheet" href="{{asset('../asset/users')}}/bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('../asset/users')}}/css/mobile_screen.css">
     <link rel="stylesheet" href="{{asset('../asset/users')}}/css/styles.css">
     <link rel="stylesheet" href="{{asset('../asset/users')}}/css/small_screen.css">
     <link rel="stylesheet" href="{{asset('../asset/users')}}/css/desktop_screen.css">
+
     
     
 
@@ -63,11 +65,16 @@
                 <div class="nav__box__modal__menu" id="nav-modal-menu">
                     <div class="nav__menu" id="nav-menu">
                         <ul class="nav__list">
-                            <li><a href="{{route('showHomePage')}}" class="nav__link active">Home</a></li>
-                            <li><a href="{{route('showProduct')}}" class="nav__link">Necklaces</a></li>
-                            <li><a href="{{route('showProduct')}}" class="nav__link">Earrings</a></li>
-                            <li><a href="{{route('showProduct')}}" class="nav__link">Bracelets</a></li>
-                            <li><a href="{{route('showProduct')}}" class="nav__link">Silver Rings</a></li>
+                            <li><a href="{{ route('showHomePage') }}" class="nav__link {{ request()->routeIs('showHomePage') ? 'active' : '' }}">Home</a></li>
+                            @foreach($categories as $category) <!-- Duyệt qua danh mục -->
+                                {{-- <li><a href="{{ route('showProduct', ['category' => $category->name]) }}" class="nav__link {{ request()->is('products/'.$category->slug) ? 'active' : '' }}">{{ $category->name }}</a></li> --}}
+                                <li>
+                                    <a href="{{ route('showProduct', ['category' => $category->name]) }}" 
+                                       class="nav__link {{ request()->is('products/'.$category->name) ? 'active' : '' }}">
+                                       {{ $category->name }}
+                                    </a>
+                                </li>
+                            @endforeach
                             <li><a href="#" class="nav__link">Contact</a></li>
                             <li><a href="#" class="nav__link">Introduction</a></li>
                         </ul>
@@ -84,8 +91,8 @@
                             <i class="header__btn__menu__search fa-solid fa-magnifying-glass" id="header-btn-menu-search"></i>
                             <div class="nav__box__modal__search" id="nav-box-modal-search">
                                 <div class="nav__modal__search" id="nav-modal-search">
-                                    <form  class="form__modal__search" id="modal-search">
-                                        <input type="text" name="modal__text__search" class="modal__inp__search" id="modal-inp-search" placeholder="search...">
+                                    <form method="GET" action="{{route('product.index')}}" class="form__modal__search" id="modal-search">
+                                        <input type="text" name="modal__text__search" class="modal__inp__search" id="modal-inp-search" placeholder="Search products...">
                                         <button type="submit" class="nav__modal__item" id="nav-btn-menu-search">
                                             <i class=" btn__modal__search fa-solid fa-magnifying-glass"></i>
                                         </button>
@@ -98,10 +105,28 @@
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <a href="../login-form/index.html" class="nav__link__menu_item">
+                        <li class="li__user">
+                            <a href="#" class="nav__link__menu_item">
                                 <img src="{{asset('../asset/users')}}/images/icons/user-icon.svg" alt="img" class="nav__item btn__user">
+
+                                <ul class="box__modal__user">
+                                    <li class="title__modal__user">
+                                        <h5>
+                                            <span>Hi</span>
+                                            <span>{{auth()->user()->name}}</span>
+                                        </h5>
+                                    </li>
+                                    <li class="box__logout">
+                                        <div class="icon__modal__logout__user">
+                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                        </div>
+                                        <div class="text__modal__logout__user">
+                                            <a href="{{route('admin.login')}}">Logout</a>
+                                        </div>
+                                    </li>
+                                </ul>
                             </a>
+                            
                         </li>
                         <li>
                             <div class="nav__link__menu__item" id="nav-btn-cart">
@@ -321,7 +346,8 @@
                                 <div class="modal__tab">
                                     <div class="box__image">
                                         <a href="#">
-                                            <img src="{{asset('../asset/users')}}/images/products/product1.jpg" alt="">
+                                            <img src="{{ asset('asset/users/images/products/' . $product->image) }}" alt="">
+                                            <img id="modal-product-image" src="" alt="">
                                         </a>
                                     </div>
                                     <div class="product__navactive">
@@ -349,7 +375,7 @@
                             <div class="col-lg-7 col-md-7 col-sm-12">
                                 <div class="modal__right">
                                     <div class="modal__title">
-                                        <h2>Donec eu furniture</h2>
+                                        <h2 id="modal-product-name"></h2>
                                     </div>
                                     <div class="modal__price">
                                         <span class="current__price new__price">$64.99</span>
@@ -398,6 +424,7 @@
     <script src="{{asset('../asset/users')}}/js/main.js"></script>
     <script src="{{asset('../asset/users')}}/js/desktop.js"></script>
     <script src="{{asset('../asset/users')}}/js/scrollreveal.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </body>
 </html>

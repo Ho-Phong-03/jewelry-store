@@ -195,6 +195,10 @@
     align-items: center;
     column-gap: 1rem;
 }
+.nav__list__menu__item li:nth-child(2)
+{
+    position: relative;
+}
 .header__btn__menu__search
 {
     font-size: 1.375rem;
@@ -213,6 +217,65 @@
 .btn__search
 {
     font-size: 1.375rem;
+}
+.btn__user
+{
+    position: relative;
+}
+.box__modal__user
+{
+    background-color: var(--while);
+    border-radius: .2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 2rem 1.25rem 2rem 1.25rem;
+    position: absolute;
+    z-index: var(--z-fixed);
+    min-width: 180px;
+    opacity: 0;  
+    visibility: hidden;
+    transition: all .8s ease;
+    transform: translateY(30px);
+}
+.title__modal__user h5 span
+{
+    color: var(--site-link-hover-color);
+}
+.box__logout
+{
+    line-height: normal;
+    margin-top: .8rem;
+    display: flex;
+}
+.icon__modal__logout__user
+{
+    margin-right: .3rem;
+}
+.text__modal__logout__user a
+{
+    display: block;
+    width: 100%;
+}
+.box__logout:hover .text__modal__logout__user a,
+.box__logout:hover .icon__modal__logout__user i
+{
+    color: var(--site-link-hover-color);
+    /* cursor: pointer; */
+}
+.text__modal__logout__user
+{
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+.nav__link__menu_item
+{
+    position: relative;
+}
+.nav__link__menu_item:hover .box__modal__user
+{
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 .fixed-header {
     position: fixed;
@@ -647,6 +710,7 @@
 .secondary__img img
 {
     width: 222px;
+    height: 222px;
     transition: all 0.3s ease;
 }
 .single__product:hover .secondary__img
@@ -812,6 +876,11 @@
 .product__desc p
 {
     margin: 0;
+    display: -webkit-box;         /* Dùng với webkit (Chrome, Edge, Safari) */
+    -webkit-line-clamp: 3;        /* Số dòng muốn hiển thị */
+    -webkit-box-orient: vertical; /* Hướng bố cục */
+    overflow: hidden;             /* Ẩn phần văn bản vượt quá */
+    text-overflow: ellipsis;      /* Hiển thị dấu 3 chấm */
 }
 .product__desc::before
 {
@@ -864,7 +933,7 @@
 }
 .banner__fullwidth
 {
-    background: url('/asset/images/slider_image/banner-full.jpg') no-repeat center center / cover scroll;
+    background: url('../images/slider_image/banner-full.jpg') no-repeat center center / cover scroll;
 }
 .banner__items
 {
@@ -2616,5 +2685,31 @@
 #mini-xmark {
     display: none;
     transition: all .3s ease;
+}
 
+/* ============ Pagination ====== */
+.custom-pagination
+{
+    padding: 30px 0;
+}
+.pagination {   
+    display: flex; 
+    list-style: none; 
+    justify-content: center; 
+    padding: 0; 
+}
+.pagination a, .pagination span {
+    padding: 5px 10px;
+    margin: 0 3px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+}
+.pagination .active span {
+    background-color: var(--site-link-hover-color);
+    color: #fff;
+    border: none;
+}
+.pagination .disabled span {
+    color: #ccc;
+    pointer-events: none;
 }

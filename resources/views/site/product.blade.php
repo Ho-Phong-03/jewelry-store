@@ -19,11 +19,11 @@
                                                 <div class="box__view__mode">
                                                     <div class="view__mode">
                                                         <h1 class="conllection__title">
-                                                            Necklaces
+                                                            {{$category->name}}
                                                         </h1>
                                                     </div>
                                                     <div class="d-none d-lg-inline-block hidden__products__quatity">
-                                                        <span class="nots__product">( 10 sản phẩm )</span>
+                                                        <span class="nots__product">( {{$totalQuantity}} sản phẩm )</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -56,13 +56,13 @@
                                             <div class="single__product">
                                                 <div class="product__thumb">
                                                     <a href="product.html" class="primary__img">
-                                                        <img src="{{asset('../asset')}}/images/slider_image/product1.jpg" alt="">
+                                                        <img src="{{ asset('asset/users/images/products/' . $product->image) }}" alt="">
                                                     </a>
                                                     <a href="detail_product.html" class="secondary__img">
-                                                        <img src="{{asset('../asset')}}/images/slider_image/product1-1.jpg" alt="">
+                                                        <img src="{{ asset('asset/users/images/products/' . $product->image_secondary) }}" alt="">
                                                     </a>
                                                     <div class="quick__button" id="btn-quick">
-                                                        <a href="#">Quick view</a>
+                                                        <a href="#" data-id='{{$product->id}}' data-bs-toggle="modal" data-bs-target="#exampleModalToggle">Quick view</a>
                                                     </div>
                                                 </div>
                                                 <div class="product__content">
@@ -71,12 +71,12 @@
                                                     </div>
                                                     <a href="#" class="product__title">
                                                         <h3 >
-                                                            {{ $product->product_name }}
+                                                            {{ $product->name }}
                                                         </h3>
                                                     </a>
                                                     <div class="price__box">
-                                                        <span class="old__price">{{$product->original_price}}</span>
-                                                        <span class="current__price">$60.00</span>
+                                                        <span class="old__price">{{$product->old__price}}</span>
+                                                        <span class="current__price">{{$product->price}}</span>
                                                     </div>
                                                     <div class="product__hover">
                                                         <div class="product__rating">
@@ -437,6 +437,61 @@
 
         <!-- ================  -->
 
+        <!-- Hiển thị liên kết phân trang -->
+        
+        @php
+            $currentPage = $products->currentPage();
+            $lastPage = $products->lastPage();
+            $startPage = max(1, $currentPage - 2); // Hiển thị tối đa 2 trang trước
+            $endPage = min($lastPage, $currentPage + 2); // Hiển thị tối đa 2 trang sau
+        @endphp
+
+        <div class="custom-pagination">
+            <ul class="pagination">
+                <!-- Nút Previous -->
+                @if ($currentPage > 1)
+                    <li><a href="{{ $products->url($currentPage - 1) }}">Previous</a></li>
+                @else
+                    <li class="disabled"><span>Previous</span></li>
+                @endif
+
+                <!-- Trang đầu -->
+                @if ($startPage > 1)
+                    <li><a href="{{ $products->url(1) }}">1</a></li>
+                    @if ($startPage > 2)
+                        <li><span>...</span></li>
+                    @endif
+                @endif
+
+                <!-- Các trang xung quanh -->
+                @for ($i = $startPage; $i <= $endPage; $i++)
+                    @if ($i == $currentPage)
+                        <li class="active"><span>{{ $i }}</span></li>
+                    @else
+                        <li><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
+                    @endif
+                @endfor
+
+                <!-- Trang cuối -->
+                @if ($endPage < $lastPage)
+                    @if ($endPage < $lastPage - 1)
+                        <li><span>...</span></li>
+                    @endif
+                    <li><a href="{{ $products->url($lastPage) }}">{{ $lastPage }}</a></li>
+                @endif
+
+                <!-- Nút Next -->
+                @if ($currentPage < $lastPage)
+                    <li><a href="{{ $products->url($currentPage + 1) }}">Next</a></li>
+                @else
+                    <li class="disabled"><span>Next</span></li>
+                @endif
+            </ul>
+        </div>
+
+
+        
     </main>
+    
     <!-- ==================== Main Area End =========================== -->
 @endsection

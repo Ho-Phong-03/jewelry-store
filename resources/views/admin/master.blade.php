@@ -85,7 +85,7 @@
                             </a>
                         </li>
 
-                        @can('productMng')
+                        
                         <li class="nav-item">
                             <a href="{{route('category.index')}}">
                                 <i class="fas fa-circle"></i>
@@ -122,7 +122,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#maps">
+                            <a href="{{route('customer.index')}}">
                                 <i class="fas fa-users"></i>
                                 <p>Customer</p>
                             </a>
@@ -511,13 +511,13 @@
                                     aria-expanded="false">
                                     <div class="avatar-sm">
                                         <img
-                                            src="{{asset('../asset/admins')}}/img/profile.jpg"
+                                            src="{{ auth()->user()->images ? asset('upload/admin/' . auth()->user()->images) : asset('default-avatar.png') }}"
                                             alt="..."
                                             class="avatar-img rounded-circle" />
                                     </div>
                                     <span class="profile-username">
                                         <span class="op-7">Hi,</span>
-                                        <span class="fw-bold">Hizrian</span>
+                                        <span class="fw-bold">{{auth()->user()->name}}</span>
                                     </span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated fadeIn">
@@ -526,13 +526,13 @@
                                             <div class="user-box">
                                                 <div class="avatar-lg">
                                                     <img
-                                                        src="{{asset('../asset/admins')}}/img/profile.jpg"
+                                                        src="{{ auth()->user()->images ? asset('upload/admin/' . auth()->user()->images) : asset('default-avatar.png') }}"
                                                         alt="image profile"
                                                         class="avatar-img rounded" />
                                                 </div>
                                                 <div class="u-text">
-                                                    <h4>Hizrian</h4>
-                                                    <p class="text-muted">hello@example.com</p>
+                                                    <h4>{{auth()->user()->name}}</h4>
+                                                    <p class="text-muted">{{auth()->user()->email}}</p>
                                                     <a
                                                         href="profile.html"
                                                         class="btn btn-xs btn-secondary btn-sm">View Profile</a>
@@ -547,7 +547,7 @@
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="#">Account Setting</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Logout</a>
+                                            <a class="dropdown-item" href="{{route('admin.logout')}}">Logout</a>
                                         </li>
                                     </div>
                                 </ul>

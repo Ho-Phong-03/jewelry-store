@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('image')->nullable();
+            $table->string('image_secondary')->nullable(); // Hình ảnh phụ
             $table->decimal('price', 10, 2);
             $table->decimal('old_price', 10, 2)->nullable();
             $table->text('description')->nullable();

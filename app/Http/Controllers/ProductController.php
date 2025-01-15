@@ -92,7 +92,8 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::findOrFail($id); // Tìm sản phẩm theo id
+        return view('admin.product.index', compact('product'));
     }
 
     /**

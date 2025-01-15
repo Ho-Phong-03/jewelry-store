@@ -1,10 +1,14 @@
 @extends('admin.master')
-@section('title', 'Product')
+@section('title', 'Customer')
 @section('content')
-
+@if (session('success'))
+<div id="success-message" class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
 <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
     <div>
-        <a href="{{route('product.create')}}" class="btn btn-info">+ Add Product</a>
+        <a href="{{route('customer.create')}}" class="btn btn-info">+ Add Customer</a>
     </div>
     <div class="ms-md-auto py-2 py-md-0">
         <nav
@@ -15,7 +19,7 @@
                         <i class="fa fa-search search-icon"></i>
                     </button>
                 </div>
-                <form method="GET" action="{{ route('product.index') }}" class="d-flex">
+                <form method="GET" action="{{ route('customer.index') }}" class="d-flex">
                     <input
                         type="text"
                         name="search"
@@ -37,30 +41,32 @@
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Price/Sale</th>
                         <th scope="col">Image</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Cat_id</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Role</th>
+                        <th scope="col"></th>
+
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($data as $model)
                     <tr>
                         <td>{{$model->id}}</td>
-                        <td>{{$model->name}}</td>
-                        <td>{{$model->price}}$ / {{$model->sale}}</td>
                         <td>
-                            <img src="upload/{{$model->image}}" alt="" width="45"></i>
+                            <img src="upload/admin/{{$model->images}}" alt="" width="45"></i>
                         </td>
-                        <td>{{$model->description}}</td>
-                        <td>{{$model->category_id}}</td>
-                        <td>{{$model->status}}</td>
+                        <td>{{$model->name}}</td>
+                        <td>{{$model->email}}</td>
+                        <td>{{$model->phone}}</td>
+                        <td>{{$model->address}}</td>
+                        <td>{{$model->role}}</td>
                         <td>
-                            <form action="{{route('product.destroy', $model->id)}}" method="post">
+                            <form action="{{route('customer.destroy', $model->id)}}" method="post">
                                 @csrf @method('DELETE')
-                                <a class="btn btn-sm btn-info" href="{{route('product.edit', $model->id)}}" role="button">
+                                <a class="btn btn-sm btn-info" href="{{route('customer.edit', $model->id)}}" role="button">
                                     <i class="fa fa-edit"></i>
                                     Edit
                                 </a>

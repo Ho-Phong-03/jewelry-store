@@ -24,11 +24,16 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'name' => fake()->name(), // Tên ngẫu nhiên
+            'email' => fake()->unique()->safeEmail(), // Email ngẫu nhiên
+            'password' => bcrypt('12345'), // Mật khẩu mặc định mã hóa
+            'birthday' => fake()->date(), // Ngày sinh ngẫu nhiên
+            'gender' => fake()->randomElement([0, 1]), // Giới tính: 0 (nữ), 1 (nam)
+            'address' => fake()->address(), // Địa chỉ ngẫu nhiên
+            'phone' => fake()->phoneNumber(), // Số điện thoại ngẫu nhiên
+            'role' => fake()->randomElement(['customer', 'admin']), // Vai trò
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 

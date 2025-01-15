@@ -205,6 +205,32 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('click', clickModalQuick);
 });
 
+$(document).ready(function () {
+    // Khi nút "View Details" được nhấn
+    $('.openModal').on('click', function () {
+        const productId = $(this).data('id'); // Lấy ID sản phẩm từ nút nhấn
+        
+        // Gọi AJAX để lấy thông tin sản phẩm
+        $.ajax({
+            url: `/product-detail/${productId}`, // Đường dẫn lấy dữ liệu
+            type: 'GET',
+            success: function (data) {
+                // Cập nhật dữ liệu vào modal
+                $('#modal-product-name').text(data.name);
+                $('#modal-product-price').text(`$${data.price}`);
+                $('#modal-product-description').text(data.description);
+                $('#modal-product-image').attr('src', `/asset/users/images/products/${data.image}`);
+                
+                // Hiển thị modal
+                $('#exampleModalToggle').modal('show');
+            },
+            error: function () {
+                alert('Failed to fetch product details.');
+            }
+        });
+    });
+});
+
 // ==================== SCROLL UP =================
 
 window.addEventListener('scroll', () => {

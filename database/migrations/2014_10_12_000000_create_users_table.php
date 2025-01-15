@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('images')->nullable();
             $table->string('phone')->nullable();
             $table->text('address')->nullable();
-            $table->date('birthday');
+            $table->date('birthday')->nullable();
             $table->tinyInteger('gender')->nullable()->default(1);
             $table->enum('role', ['customer', 'admin'])->default('customer');
             $table->timestamps();

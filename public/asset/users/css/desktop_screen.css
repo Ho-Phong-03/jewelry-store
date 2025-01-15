@@ -168,6 +168,68 @@
     {
         min-width: 400px;
     }
+
+/* ==================== Nav Menu Item ==================== */
+    .btn__user
+    {
+        position: relative;
+    }
+    .box__modal__user {
+        background-color: var(--while);
+        border-radius: .2rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 2rem 1.25rem;
+        position: absolute;
+        top: 100%;
+        left: auto;
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        transform: translateY(10px); 
+    }
+    .title__modal__user h5 span
+    {
+        color: var(--site-link-hover-color);
+    }
+    .box__logout
+    {
+        line-height: normal;
+        margin-top: .8rem;
+        display: flex;
+    }
+    .icon__modal__logout__user
+    {
+        margin-right: .3rem;
+    } 
+    .text__modal__logout__user a
+    {
+        display: block;
+        width: 100%;
+    }
+    .box__logout:hover .text__modal__logout__user a,
+    .box__logout:hover .icon__modal__logout__user i
+    {
+        color: var(--site-link-hover-color);
+        /* cursor: pointer; */
+    }
+    .text__modal__logout__user
+    {
+        display: block;
+        width: 100%;
+        cursor: pointer;
+    }
+    .nav__link__menu_item
+    {
+        position: relative;
+    }
+    .nav__link__menu_item:hover .box__modal__user,
+    .li__user:hover .box__modal__user  {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
     /* ==================== SLIDER ==================== */
     
     .carousel-caption  p

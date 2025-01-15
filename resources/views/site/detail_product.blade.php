@@ -63,7 +63,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="product__right">
                             <form action="#">
-                                <h1>Donec eu furniture</h1>
+                                <h1>{{$product->name}}</h1>
                                 <div class="product__nav">
                                     <ul>
                                         <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
@@ -81,11 +81,24 @@
                                     </ul>
                                 </div>
                                 <div class="product__price">
-                                    <span class="old__price product__old__price">$80.00</span>
-                                    <span class="current__price product__current__price">$70.00</span>
+                                    @if($product->old_price)
+                                    
+                                        <span class="old__price product__old__price">${{$product->old_price}}</span>
+                                    @else
+                                        <span class="old__price product__old__price">N/A</span>
+                                    @endif
+
+                                    @if($product->price)
+                                    
+                                        <span class="current__price product__current__price">{{$product->price}}</span>
+                                    @else
+
+                                    <span class="current__price product__current__price">Liên hệ</span>
+
+                                    @endif
                                 </div>
                                 <div class="product__desc box__desc">
-                                    <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere nisl, in </p>
+                                    <p>{{$product->description}} </p>
                                 </div>
 
                                 <div class="product__variant quantity">
@@ -236,92 +249,106 @@
                 
                 <div class="product__list__section ">
                     <div class="grid product__list__slider">
-                        <?php for($i = 1; $i <= 10; $i++) { ?>
-                        <article>
-                            <div class="product__item">
-                                <div class="single__product">
-                                    <div class="product__thumb">
-                                        <a href="#" class="primary__img">
-                                            <img src="{{asset('../asset')}}/images/slider_image/product1.jpg" alt="">
-                                        </a>
-                                        <a href="#" class="secondary__img">
-                                            <img src="{{asset('../asset')}}/images/slider_image/product1-1.jpg" alt="">
-                                        </a>
-                                        <div class="quick__button" id="btn-quick">
-                                            <a href="#">Quick view</a>
-                                        </div>
-                                    </div>
-                                    <div class="product__content">
-                                        <div class="tag__cate">
-                                            <a href="#">Brand</a>
-                                        </div>
-                                        <a href="#" class="product__title">
-                                            <h3 >
-                                                Donec eu furniture
-                                            </h3>
-                                        </a>
-                                        <div class="price__box">
-                                            <span class="old__price">$86.00</span>
-                                            <span class="current__price">$60.00</span>
-                                        </div>
-                                        <div class="product__hover">
-                                            <div class="product__rating">
-                                                <ul class="product__rating__list">
-                                                    <li>
-                                                        <a href="#" class="product__rating__link">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="product__rating__link">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="product__rating__link">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="product__rating__link">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" class="product__rating__link">
-                                                            <i class="fa-regular fa-star"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                        @foreach ($randomProducts as $randomProduct)
+                            <article>
+                                <div class="product__item">
+                                    <div class="single__product">
+                                        <div class="product__thumb">
+                                            <a href="#" class="primary__img">
+                                                <img src="{{asset('../asset')}}/images/slider_image/product1.jpg" alt="">
+                                            </a>
+                                            <a href="#" class="secondary__img">
+                                                <img src="{{asset('../asset')}}/images/slider_image/product1-1.jpg" alt="">
+                                            </a>
+                                            <div class="quick__button" id="btn-quick">
+                                                <a href="#">Quick view</a>
                                             </div>
-                                            <div class="product__desc">
-                                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis, consequuntur.</p>
+                                        </div>
+                                        <div class="product__content">
+                                            <div class="tag__cate">
+                                                <a href="#">Brand</a>
                                             </div>
-                                            <div class="action__links">
-                                                <ul class="action__links__list">
-                                                    <li>
-                                                        <a href="" class="action__link ">
-                                                            <i class="fa-regular fa-heart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="add__to__cart">
-                                                        <a href="" class="action__link">
-                                                            Add to cart
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="" class="action__link">
-                                                            <i class="fa-solid fa-sliders"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            <a href="#" class="product__title">
+                                                <h3 >
+                                                    {{$randomProduct->name}}
+                                                </h3>
+                                            </a>
+                                            <div class="price__box">
+                                                
+                                                @if($randomProduct->old_price)
+                                    
+                                                    <span class="old__price">${{$product->old_price}}</span>
+                                                @else
+                                                    <span class="old__price">N/A</span>
+                                                @endif
+
+                                                @if($randomProduct->price)
+                                                
+                                                    <span class="current__price">{{$product->price}}</span>
+                                                @else
+
+                                                    <span class="current__price">Liên hệ</span>
+
+                                                @endif
+                                            </div>
+                                            <div class="product__hover">
+                                                <div class="product__rating">
+                                                    <ul class="product__rating__list">
+                                                        <li>
+                                                            <a href="#" class="product__rating__link">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="product__rating__link">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="product__rating__link">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="product__rating__link">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#" class="product__rating__link">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="product__desc">
+                                                    <p>{{$randomProduct->description}}</p>
+                                                </div>
+                                                <div class="action__links">
+                                                    <ul class="action__links__list">
+                                                        <li>
+                                                            <a href="" class="action__link ">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="add__to__cart">
+                                                            <a href="" class="action__link">
+                                                                Add to cart
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="" class="action__link">
+                                                                <i class="fa-solid fa-sliders"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
-                        <?php } ?>
+                            </article>
+                        @endforeach
                     </div>
                 </div>
             </div>
