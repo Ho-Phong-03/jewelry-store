@@ -341,6 +341,48 @@
     opacity: 1;
     pointer-events: auto;
 }
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    overflow: none;
+    display: none;
+    z-index: 2000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transform: translateY(10px);
+    margin-top: 10px;
+
+}
+
+.suggestions-box.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.suggestion-item img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.suggestion-item:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
 /* =============== Modal CART ================ */
 .modal_cart__list
 {

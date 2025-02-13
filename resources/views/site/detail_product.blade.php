@@ -33,7 +33,7 @@
 
                             <div id="img-1" class="img-zoom zoomWrapper">
                                 <a href="#">
-                                    <img id="zoom1" src="{{asset('../asset')}}/images/products/product1.jpg" alt="big-1">
+                                    <img id="zoom1" src="{{asset('asset/users/images/products/'.$product->image)}}" alt="{{$product->name}}">
                                 </a>
                                 <div class="zoomedImage"></div>
                             </div>
@@ -41,13 +41,14 @@
                             <div class="product__detail__navactive">
                                 <div class="product__detail__sliders">
                                     <div class="box__detail__sliders">
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1-1.jpg" alt=""></a></div>
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1.jpg" alt=""></a></div>
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1-1.jpg" alt=""></a></div>
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1.jpg" alt=""></a></div>
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1-1.jpg" alt=""></a></div>
-                                        <div class="slider__detail__image"><a href="#"><img src="{{asset('../asset')}}/images/products/product1.jpg" alt=""></a></div>
-                                    </div>
+                                        @foreach($product->images as $image)
+                                            <div class="slider__detail__image">
+                                                <a href="#" onclick="changeMainImage('{{asset('asset/users/images/products/'.$image->path)}}'); return false;">
+                                                    <img src="{{asset('asset/users/images/products/'.$image->path)}}" alt="">
+                                                </a>
+                                            </div>
+                                        @endforeach
+                                        </div>
                                 </div>
                                 <div class="slider__detail__control">
                                     <a class="btn__slider__detail__control btn__detail__left" id="btn-detail-left">
@@ -255,10 +256,10 @@
                                     <div class="single__product">
                                         <div class="product__thumb">
                                             <a href="#" class="primary__img">
-                                                <img src="{{asset('../asset')}}/images/slider_image/product1.jpg" alt="">
+                                                <img src="{{asset('./asset/users/images/products/'.$randomProduct->image_secondary)}}" alt="">
                                             </a>
                                             <a href="#" class="secondary__img">
-                                                <img src="{{asset('../asset')}}/images/slider_image/product1-1.jpg" alt="">
+                                                <img src="{{asset('./asset/users/images/products/'.$randomProduct->image)}}" alt="">
                                             </a>
                                             <div class="quick__button" id="btn-quick">
                                                 <a href="#">Quick view</a>
@@ -332,7 +333,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="add__to__cart">
-                                                            <a href="" class="action__link">
+                                                            <a href="{{route('addProductCart', ['id' => $product->id])}}" class="action__link">
                                                                 Add to cart
                                                             </a>
                                                         </li>

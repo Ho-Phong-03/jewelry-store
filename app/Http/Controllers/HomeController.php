@@ -33,26 +33,76 @@ class HomeController extends Controller
     {
         $product = Product::with('images')->findOrFail($id);
         $randomProducts = Product::inRandomOrder()->take(5)->get();
-        return view('site.detail_product', compact('product', 'randomProducts')); // Trả về view product với danh sách sản phẩm
+        return view('site.detail_product', compact('product', 'randomProducts'));
     }
 
 
-    public function product($name)
+    // Sản phẩm
+    public function product(Request $request, $name = null)
     {
-        // Tìm danh mục theo tên (name)
-        $category = Category::where('name', $name)->firstOrFail();
+        if ($name) {
+            // Kiểm tra nếu danh mục tồn tại
+            $category = Category::where('name', $name)->first();
+        } else {
+            $category = null; // Đảm bảo không bị lỗi khi view sử dụng
+        }
+    
+        $products = $category ? Product::where('category_id', $category->id) : Product::query();
+    
+        if ($request->has('keyword')) {
+            $keyword = $request->input('keyword');
+            $products->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%{$keyword}%");
+            });
+        } else {
+            $keyword = null;
+        }
+        
+        $products = $products->paginate(20);
+        $categories = Category::withCount('products')->get();
+    
+        return view('site.product', compact('products', 'categories', 'category', 'keyword', ));
+    }
+        
 
-        // Lấy tất cả sản phẩm thuộc danh mục
-        $products = Product::where('category_id', $category->id)->paginate(20);
 
-        // Lấy tất cả danh mục
-        $categories = Category::all();
+    //Tìm kiếm sản phẩm
+    public function searchSuggestions(Request $request)
+    {
+        $keyword = $request->input('keyword');
 
-        // Tính tổng số lượng sản phẩm thuộc loại này
-        $totalQuantity = $products->total();
+        if (!$keyword || strlen($keyword) < 1) {
+            return response()->json([]);
+        }
 
-        return view('site.product', compact('products', 'categories', 'category', 'totalQuantity'));
+        $products = Product::where('name', 'LIKE', "%{$keyword}%")
+                            ->get(['id', 'name', 'image']);
+
+        // Đảm bảo URL hình ảnh đầy đủ
+        $products->transform(function($product) {
+            $product->image = asset($product->image);
+            return $product;
+        });
+
+        return response()->json($products);
     }
 
+
+    public function addProductCart($id){
+        $product = Product::find($id);
+        $cart = session()->get('cart', []);
+        if(isset($cart[$id])){
+            $cart[$id]['quantity']++;
+        }else{
+            $cart[$id]=[
+                'name' => $product->name,
+                'quantity' => 1,
+                'price' => $product->price,
+                'image' => $product->image
+            ];
+        }
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
+    }
 
 }

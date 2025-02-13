@@ -25,8 +25,9 @@ Route::group(['prefix' => ''], function () {
     Route::get('/cart', [HomeController::class, 'cart'])->name('showCart');
     Route::get('/checkout', [HomeController::class, 'checkOut'])->name('checkOut');
     Route::get('product/{id}', [HomeController::class, 'detailProduct'])->name('showDetailProduct');
-    Route::get('/products/{category}/', [HomeController::class, 'product'])->name('showProduct');
-
+    Route::get('/products/{category?}/', [HomeController::class, 'product'])->name('showProduct');
+    Route::get('/search-suggestions', [HomeController::class, 'searchSuggestions'])->name('searchSuggestions');
+    Route::get('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
 });
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');

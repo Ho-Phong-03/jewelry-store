@@ -1,0 +1,84 @@
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 8px;
+}
+
+.pagination li {
+    margin: 0;
+}
+
+.pagination li a,
+.pagination li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.pagination li a {
+    background: #fff;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+.pagination li a:hover {
+    background: #f5f5f5;
+    color: #000;
+    border-color: #ccc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.pagination li.active span {
+    background: #2563eb;
+    color: #fff;
+    border: 1px solid #2563eb;
+}
+
+.pagination li.disabled span {
+    background: #f5f5f5;
+    color: #999;
+    border: 1px solid #e0e0e0;
+    cursor: not-allowed;
+}
+
+/* Animation cho dấu ... */
+.pagination li span:contains("...") {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .pagination li a,
+    .pagination li span {
+        min-width: 35px;
+        height: 35px;
+        font-size: 13px;
+    }
+    
+    .pagination {
+        gap: 4px;
+    }
+} 
