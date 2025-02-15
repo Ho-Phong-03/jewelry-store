@@ -63,7 +63,7 @@
                                                                 alt="">
                                                                 
                                                         </a>
-                                                        <a href="detail_product.html" class="secondary__img">
+                                                        <a href="{{route('showDetailProduct', $product->id)}}" class="secondary__img">
                                                             <img src="{{ asset('asset/users/images/products/' . $product->image_secondary) }}"
                                                                 alt="">
                                                         </a>
@@ -75,9 +75,9 @@
                                                     </div>
                                                     <div class="product__content">
                                                         <div class="tag__cate">
-                                                            <a href="#">Brand</a>
+                                                            <a href="{{route('showDetailProduct', $product->id)}}">Brand</a>
                                                         </div>
-                                                        <a href="#" class="product__title">
+                                                        <a href="{{route('showDetailProduct', $product->id)}}" class="product__title">
                                                             <h3>
                                                                 {{ $product->name }}
                                                             </h3>

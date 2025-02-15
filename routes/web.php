@@ -23,11 +23,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => ''], function () {
     Route::get('/', [HomeController::class, 'homePage'])->name('showHomePage');
     Route::get('/cart', [HomeController::class, 'cart'])->name('showCart');
+    Route::post('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
     Route::get('/checkout', [HomeController::class, 'checkOut'])->name('checkOut');
     Route::get('product/{id}', [HomeController::class, 'detailProduct'])->name('showDetailProduct');
     Route::get('/products/{category?}/', [HomeController::class, 'product'])->name('showProduct');
     Route::get('/search-suggestions', [HomeController::class, 'searchSuggestions'])->name('searchSuggestions');
     Route::get('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
+    Route::post('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
+    Route::get('/removeCartItem/{id}', [HomeController::class, 'removeCartItem'])->name('removeCartItem');
+
 });
 
 Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');

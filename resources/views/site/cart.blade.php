@@ -11,7 +11,7 @@
                         <div class="breadcrumb__content">
                             <h3>Shopping Cart</h3>
                             <ul>
-                                <li><a href="{{route('homePage')}}">home</a></li>
+                                <li><a href="{{route('showHomePage')}}">home</a></li>
                                 <li>&gt;</li>
                                 <li><a href="shop.html">shop</a></li>
                                 <li>&gt;</li>
@@ -27,7 +27,8 @@
         <!-- ================ Shopping Cart Area Start =========-->
         <section class="shopping__cart__section section">
             <div class="container">  
-                <form action="#"> 
+                <form action="{{route('updateCart')}}" method="post" > 
+                    @csrf
                     <div class="row">
                         <div class="col-12">
                             <div class="table__desc">
@@ -44,32 +45,28 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="{{asset('../asset')}}/images/products/product1-1.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                                <td class="product-price">£65.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£130.00</td>
-                                            </tr>
-    
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="{{asset('../asset')}}/images/products/product2.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbags justo</a></td>
-                                                <td class="product-price">£90.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£180.00</td>
-                                            </tr>
+                                            @php $total = 0; @endphp 
+                                            
+                                            @if (session('cart')) 
+                                                @foreach (session('cart') as $id => $details) 
+                                                    @php $subtotal = $details['price'] * $details['quantity']; 
+                                                        $total += $subtotal;
+                                                    @endphp
+                                                    <tr>
+                                                        <td class="product_remove"><a href="{{route('removeCartItem', $id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa!');"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                        <td class="product_thumb"><a href="#"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
+                                                        <td class="product_name"><a href="#">{{ $details['name'] }}</a></td>
+                                                        <td class="product-price">${{ number_format($details['price'], 2) }}</td>
+                                                        <td class="product_quantity"><label>Quantity</label> <input type="number" name="quantity[{{ $id }}]" value="{{ $details['quantity'] }}"></td>
+                                                        <td class="product_total">${{ number_format($subtotal, 2) }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                @else
+                                                    <tr>
+                                                        <td colspan="6" class="text-center">Your cart is empty!</td>
+                                                    </tr>
+                                            @endif
 
-                                            <tr>
-                                                <td class="product_remove"><a href="#"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                <td class="product_thumb"><a href="#"><img src="asset/images/products/product5.jpg" alt=""></a></td>
-                                                <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                <td class="product-price">£80.00</td>
-                                                <td class="product_quantity"><label>Quantity</label> <input min="0" max="100" value="1" type="number"></td>
-                                                <td class="product_total">£160.00</td>
-                                            </tr>
                                         </tbody>
                                     </table>   
                                 </div>  
@@ -98,7 +95,7 @@
                                     <div class="coupon__inner">
                                         <div class="cart__subtotal">
                                             <p>Subtotal</p>
-                                            <p class="cart__amount">£215.00</p>
+                                            <p class="cart__amount">${{ number_format($total, 2) }}</p>
                                         </div>
                                         <div class="cart__subtotal ">
                                             <p>Shipping</p>
@@ -108,10 +105,10 @@
     
                                         <div class="cart__subtotal">
                                             <p>Total</p>
-                                            <p class="cart__amount">£215.00</p>
+                                            <p class="cart__amount">${{ number_format($total, 2) }}</p>
                                         </div>
                                         <div class="checkout__btn">
-                                            <a href="#">Proceed to Checkout</a>
+                                            <a href="{{ route('checkOut') }}">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

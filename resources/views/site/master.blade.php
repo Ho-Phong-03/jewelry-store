@@ -18,14 +18,13 @@
 </head>
 
 <body>
-    {{-- <div class="container mt-4">
-        <h2 class="mb-3">Add To Shopping Cart</h2>
+    <div class="container mt-4">
         @if(session('success'))
             <div class="alert alert-success">
                 {{session('success')}}
             </div>
         @endif
-    </div> --}}
+    </div>
     <!-- ==================== Header Area Start =========================-->
     <header class="header" id="header">
         <!--================= Header Top ====================-->
@@ -149,51 +148,42 @@
                             <div class="nav__link__menu__item" id="nav-btn-cart">
                                 <img src="{{ asset('../asset/users') }}/images/icons/bag-icon.svg" alt="img"
                                     class="nav__item btn__bag">
+                                    <span class="badge bg-danger">
+                                        {{count((array) session('cart'))}}
+                                    </span>
                             </div>
                             <div class="nav__box__modal__cart" id="nav-box-modal-cart">
                                 <div class="nav__modal__cart" id="nav-modal-cart">
                                     <div class="modal_cart__list">
-                                        <div class="cart__item">
-                                            <div class="cart__img">
-                                                <a href="#">
-                                                    <img src="{{ asset('../asset/users') }}/images/products/img-product-1.jpg"
-                                                        alt="" class="cart__image">
-                                                </a>
-                                            </div>
-                                            <div class="cart__info">
-                                                <a href="#" class="cart__name__product">Letraset Animal</a>
-                                                <span class="quantity">Qty: 1</span>
-                                                <span class="price__cart">$60.00</span>
-                                            </div>
-                                            <div class="cart__remove">
-                                                <a href="#">
-                                                    <i class="icon__cart__remove fa-solid fa-xmark"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <div class="cart__item">
-                                            <div class="cart__img">
-                                                <a href="#">
-                                                    <img src="{{ asset('../asset/users') }}/images/products/img-product-1.jpg"
-                                                        alt="" class="cart__image">
-                                                </a>
-                                            </div>
-                                            <div class="cart__info">
-                                                <a href="#" class="cart__name__product">Letraset Animal</a>
-                                                <span class="quantity">Qty: 1</span>
-                                                <span class="price__cart">$60.00</span>
-                                            </div>
-                                            <div class="cart__remove">
-                                                <a href="#">
-                                                    <i class="icon__cart__remove fa-solid fa-xmark"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        @php $total = 0 @endphp
+                                        @if (session('cart')) 
+                                            @foreach (session('cart') as $id=>$details) 
+                                                @php $total += $details['price'] * $details['quantity'] @endphp
+                                                <div class="cart__item">
+                                                    <div class="cart__img">
+                                                        <a href="#">
+                                                            <img src="{{ asset('asset/users/images/products/' . $details['image']) }}"
+                                                                alt="{{ $details['name'] }}" class="cart__image">
+                                                        </a>
+                                                    </div>
+                                                    <div class="cart__info">
+                                                        <a href="#" class="cart__name__product">{{$details['name']}}</a>
+                                                        <span class="quantity">Qty: {{$details['quantity']}}</span>
+                                                        <span class="price__cart">${{ number_format($details['price'] * $details['quantity'], 2) }}</span>
+                                                    </div>
+                                                    <div class="cart__remove">
+                                                        <a href="{{ route('removeCartItem', ['id' => $id]) }}">
+                                                            <i class="icon__cart__remove fa-solid fa-xmark"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        
                                     </div>
                                     <div class="cart__total">
                                         <span>Subtotal:</span>
-                                        <span>$ 120.00</span>
+                                        <span>${{ number_format($total, 2) }}</span>
                                     </div>
                                     <div class="mini__cart__footer">
                                         <div class="cart__btn view__cart">
@@ -201,7 +191,7 @@
                                                 cart</a>
                                         </div>
                                         <div class="cart__btn view__checkout">
-                                            <a href="#" class="cart__link cart__link_checkout">Checkout</a>
+                                            <a href="{{route('checkOut')}}" class="cart__link cart__link_checkout">Checkout</a>
                                         </div>
                                     </div>
                                     <!-- Close Button -->
@@ -375,7 +365,7 @@
                                 <div class="modal__tab">
                                     <div class="box__image">
                                         <a href="#">
-                                            <img src="{{ asset('asset/users/images/products/' . $product->image) }}"
+                                            {{-- <img src="{{ asset('asset/users/images/products/'.$product->image) }}" --}}
                                                 alt="">
                                             <img id="modal-product-image" src="" alt="">
                                         </a>

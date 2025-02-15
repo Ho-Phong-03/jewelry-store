@@ -67,7 +67,7 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td> Handbag  fringilla <strong> × 2</strong></td>
+                                                <td> showHomePage <strong> × 2</strong></td>
                                                 <td> $165.00</td>
                                             </tr>
                                             <tr>

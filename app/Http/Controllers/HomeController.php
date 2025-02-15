@@ -73,6 +73,7 @@ class HomeController extends Controller
 
         if (!$keyword || strlen($keyword) < 1) {
             return response()->json([]);
+
         }
 
         $products = Product::where('name', 'LIKE', "%{$keyword}%")
@@ -102,7 +103,30 @@ class HomeController extends Controller
             ];
         }
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng');
+        return redirect()->back()->with('success', 'The product has been added to the cart');
+    }
+
+    public function removeCartItem($id){
+        $cart = session()->get('cart', []);
+        if(isset($cart[$id])){
+            unset($cart[$id]);
+            session()->put('cart', $cart);
+            return redirect()->back()->with('success', 'The product has been deleted from the cart');
+        }
+    }
+
+    public function updateCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        foreach($request->quantity as $id => $quantity)
+        {
+            if(isset($cart[$id]) && $quantity > 0)
+            {
+                $cart[$id]['quantity'] = $quantity;
+            }
+        }
+        session()->put('cart', $cart);
+        return redirect()->route('showCart')->with('success', 'Successful update of shopping carts');
     }
 
 }
