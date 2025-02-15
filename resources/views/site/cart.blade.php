@@ -45,17 +45,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php $total = 0; @endphp 
+                                            @php 
+                                                $total = 0; 
+                                                $ship = 100;
+                                            @endphp 
                                             
                                             @if (session('cart')) 
                                                 @foreach (session('cart') as $id => $details) 
-                                                    @php $subtotal = $details['price'] * $details['quantity']; 
+                                                    @php 
+                                                        $subtotal = $details['price'] * $details['quantity']; 
                                                         $total += $subtotal;
                                                     @endphp
                                                     <tr>
                                                         <td class="product_remove"><a href="{{route('removeCartItem', $id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa!');"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                        <td class="product_thumb"><a href="#"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
-                                                        <td class="product_name"><a href="#">{{ $details['name'] }}</a></td>
+                                                        <td class="product_thumb"><a href="{{route('showDetailProduct', $id)}}"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
+                                                        <td class="product_name"><a href="{{route('showDetailProduct', $id)}}">{{ $details['name'] }}</a></td>
                                                         <td class="product-price">${{ number_format($details['price'], 2) }}</td>
                                                         <td class="product_quantity"><label>Quantity</label> <input type="number" name="quantity[{{ $id }}]" value="{{ $details['quantity'] }}"></td>
                                                         <td class="product_total">${{ number_format($subtotal, 2) }}</td>
@@ -99,13 +103,13 @@
                                         </div>
                                         <div class="cart__subtotal ">
                                             <p>Shipping</p>
-                                            <p class="cart__amount"><span>Flat Rate:</span> £255.00</p>
+                                            <p class="cart__amount"><span>Flat Rate:</span> ${{number_format($ship, 2)}}</p>
                                         </div>
                                         <a href="#">Calculate shipping</a>
     
                                         <div class="cart__subtotal">
                                             <p>Total</p>
-                                            <p class="cart__amount">${{ number_format($total, 2) }}</p>
+                                            <p class="cart__amount total__cart">${{ number_format($total+$ship,2)}}</p>
                                         </div>
                                         <div class="checkout__btn">
                                             <a href="{{ route('checkOut') }}">Proceed to Checkout</a>

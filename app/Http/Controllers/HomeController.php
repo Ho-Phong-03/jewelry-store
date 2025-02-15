@@ -25,7 +25,38 @@ class HomeController extends Controller
 
     // Thanh toán
     public function checkOut(){
-        return view('site.checkout');
+        $cart = session()->get('cart', []);
+        if(empty($cart)) {
+            return redirect()->route('showCart')->with('error', 'Your cart is empty');
+        }
+        
+        $total = 0;
+        $shipping = 100.00;
+        foreach($cart as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        $orderTotal = $total + $shipping;
+        
+        return view('site.checkout', compact('cart', 'total', 'shipping', 'orderTotal'));
+    }
+
+    public function processCheckout(Request $request)
+    {
+        $request->validate([
+            'fullName' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'email' => 'required|email',
+            'address' => 'required|string|max:255',
+        ]);
+
+        // Here you would typically:
+        // 1. Create order in database
+        // 2. Process payment
+        // 3. Clear cart
+        // 4. Send confirmation email
+        
+        session()->forget('cart');
+        return redirect()->route('home')->with('success', 'Order placed successfully!');
     }
 
     // Chi tiết sản phẩm
@@ -128,5 +159,6 @@ class HomeController extends Controller
         session()->put('cart', $cart);
         return redirect()->route('showCart')->with('success', 'Successful update of shopping carts');
     }
+
 
 }

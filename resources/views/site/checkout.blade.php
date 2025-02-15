@@ -26,24 +26,37 @@
                 <div class="checkout__form">
                     <div class="row">
                         <div class="col-lg-6 col-md-6">
-                            <form action="#">
+                            <form action="{{ route('processCheckout') }}" method="POST">
+                                @csrf
                                 <h3>Billing Details</h3>
                                 <div class="row">
                                     <div class="col-lg-6 mb-20">
                                         <label>Full Name <span>*</span></label>
-                                        <input type="text" name="fulltName" id="full-name">    
+                                        <input type="text" name="fullName" id="full-name" value="{{old('fullName')}}" required>  
+                                        @error('fullName')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-lg-6 mb-20">
                                         <label>Phone<span>*</span></label>
-                                        <input type="text" name="phone" id="phone"> 
+                                        <input type="text" name="phone" id="phone" value="{{old('phone')}}"> 
+                                        @error('phone')
+                                            <small id="helpId" class="text-muted">{{$message}}</small>
+                                        @enderror
                                     </div> 
                                     <div class="col-lg-6 mb-20">
                                         <label> Email<span>*</span></label>
-                                        <input type="text" name="email" id="email"> 
+                                        <input type="text" name="email" id="email" value="{{old('email')}}"> 
+                                        @error('email')
+                                            <small id="helpId" class="text-muted">{{$message}}</small>
+                                        @enderror
                                     </div> 
                                     <div class="col-12 mb-20">
                                         <label>Address  <span>*</span></label>
-                                        <input placeholder="House number and street name" type="text" name="address" id="address">     
+                                        <input placeholder="House number and street name" type="text" name="address" id="address" value="{{old('address')}}">   
+                                        @error('address')
+                                            <small id="helpId" class="text-muted">{{$message}}</small>
+                                        @enderror
                                     </div>
                                     <div class="col-12">
                                         <div class="order__notes">
@@ -66,35 +79,21 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($cart as $id => $details)
                                             <tr>
-                                                <td> showHomePage <strong> × 2</strong></td>
-                                                <td> $165.00</td>
+                                                <td>{{ $details['name'] }} <strong> × {{ $details['quantity'] }}</strong></td>
+                                                <td>${{ number_format($details['price'] * $details['quantity'], 2) }}</td>
                                             </tr>
-                                            <tr>
-                                                <td>  Handbag  justo	 <strong> × 2</strong></td>
-                                                <td> $50.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td>  Handbag elit	<strong> × 2</strong></td>
-                                                <td> $50.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td> Handbag Rutrum	 <strong> × 1</strong></td>
-                                                <td> $50.00</td>
-                                            </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Cart Subtotal</th>
-                                                <td>$215.00</td>
-                                            </tr>
-                                            <tr>
                                                 <th>Shipping</th>
-                                                <td><strong>$5.00</strong></td>
+                                                <td><strong>${{ number_format($shipping, 2) }}</strong></td>
                                             </tr>
                                             <tr class="order__total">
                                                 <th>Order Total</th>
-                                                <td><strong>$220.00</strong></td>
+                                                <td><strong>${{ number_format($orderTotal, 2) }}</strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>     

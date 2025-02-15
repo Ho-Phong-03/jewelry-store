@@ -31,6 +31,7 @@ Route::group(['prefix' => ''], function () {
     Route::get('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
     Route::post('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
     Route::get('/removeCartItem/{id}', [HomeController::class, 'removeCartItem'])->name('removeCartItem');
+    Route::post('/process-checkout', [HomeController::class, 'processCheckout'])->name('processCheckout');
 
 });
 
@@ -51,6 +52,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         'customer'=> CustomerController::class,
     ]);
 });
+
+
 
 
 

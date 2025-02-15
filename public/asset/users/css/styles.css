@@ -2191,6 +2191,10 @@
     font-size: 1.125rem;
     font-weight: var(--font-medium);
 }
+.cart__subtotal p.total__cart
+{
+    color: rgb(220, 53, 69);
+}
 .cart__subtotal p span 
 {
     margin-right: 1.875rem;
