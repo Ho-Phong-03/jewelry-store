@@ -35,14 +35,14 @@ Route::group(['prefix' => ''], function () {
 
 });
 
-Route::get('/admin/login', [AdminController::class, 'login'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'check_login']);
-Route::get('/admin/register', [AdminController::class, 'register'])->name('admin.register');
-Route::post('/admin/register', [AdminController::class, 'check_register']);
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
+    Route::post('/login', [AdminController::class, 'check_login']);
+    Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
+    Route::post('/register', [AdminController::class, 'check_register']);
+});
 
-
-
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 

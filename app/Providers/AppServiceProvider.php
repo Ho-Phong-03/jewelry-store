@@ -2,39 +2,34 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
-use App\Models\Category; // Model lấy dữ liệu từ database
+use App\Models\Category;
 use App\Models\Product;
+use Carbon\Laravel\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
     public function register(): void
     {
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        // Lấy dữ liệu từ bảng categories
-        $categories = Category::all();
-
-        // Chia sẻ dữ liệu cho tất cả các view
-        View::share('categories', $categories);
+        // Kiểm tra nếu bảng 'categories' tồn tại trước khi truy vấn
+        if (Schema::hasTable('categories')) {
+            $categories = Category::all();
+            View::share('categories', $categories);
+        }
+        
+        // Tương tự với bảng 'products'
+        if (Schema::hasTable('products')) {
+            $product = Product::all();
+            View::share('product', $product);
+        }
 
         Paginator::useTailwind();
-
-        $product = Product::all();
-        // Chia sẻ dữ liệu cho tất cả các view
-        View::share('product', $product);
-
     }
 }
