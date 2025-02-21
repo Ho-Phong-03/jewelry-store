@@ -31,48 +31,59 @@ class AdminController extends Controller
 
     public function login()
     {
-        // Check if user is already logged in
-        if (Auth::check() && Auth::user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
+        // Kiểm tra nếu đã đăng nhập thì chuyển hướng
+        if (Auth::check()) {
+            return redirect()->route('home');
         }
         return view('admin.login');
     }
 
     public function check_login(Request $request)
     {
-        $rules = [
-            'email' => 'required|email|exists:users',
+        $request->validate([
+            'email' => 'required|email',
             'password' => 'required',
-        ];
-        
-        $request->validate($rules);
-        
+        ]);
+
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            
-            if ($user->role === 'admin') {
-                return redirect()->route('admin.dashboard')
-                    ->with('success', 'Welcome, Admin!');
-            }
-            
-            Auth::logout();
-            return redirect()->back()
-                ->with('error', 'You do not have permission to access admin panel.');
+            // Đăng nhập thành công
+            return redirect()->route('home')
+                ->with('success', 'Đăng nhập thành công!');
         }
-        return redirect()->back()->with('error', 'Invalid credentials!');
+
+        // Đăng nhập thất bại
+        return redirect()->back()
+            ->with('error', 'Email hoặc mật khẩu không chính xác!')
+            ->withInput($request->except('password'));
     }
+
+    public function register()
+    {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
+        return view('admin.register');
+    }
+
     public function check_register(Request $request)
     {
-        $rules = [
-            'name' => 'required|string|max:60',
+        $request->validate([
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:8',
-            'password_confirm' => 'required|same:password',
-        ];
-        
-        $request->validate($rules);
+            'password' => 'required|min:6|confirmed',
+            'password_confirmation' => 'required'
+        ], [
+            'name.required' => 'Vui lòng nhập tên',
+            'email.required' => 'Vui lòng nhập email',
+            'email.email' => 'Email không hợp lệ',
+            'email.unique' => 'Email đã tồn tại',
+            'password.required' => 'Vui lòng nhập mật khẩu',
+            'password.min' => 'Mật khẩu phải có ít nhất 6 ký tự',
+            'password.confirmed' => 'Xác nhận mật khẩu không khớp',
+            'password_confirmation.required' => 'Vui lòng xác nhận mật khẩu'
+        ]);
 
         try {
             $user = User::create([
@@ -82,21 +93,27 @@ class AdminController extends Controller
                 'role' => 'customer' // Mặc định là customer
             ]);
 
-            return redirect()->route('admin.login')
-                ->with('success', 'Registration successful!');
+            // Đăng nhập ngay sau khi đăng ký
+            Auth::login($user);
+
+            return redirect()->route('home')
+                ->with('success', 'Đăng ký thành công!');
         } catch (\Exception $e) {
             return redirect()->back()
-                ->with('error', 'Registration failed! Please try again.');
+                ->with('error', 'Đăng ký thất bại! Vui lòng thử lại.')
+                ->withInput($request->except('password', 'password_confirmation'));
         }
     }
+
     public function logout(Request $request)
     {
         Auth::logout();
-
+        
         $request->session()->invalidate();
-
+        
         $request->session()->regenerateToken();
-
-        return redirect()->route('admin.login');
+        
+        return redirect()->route('home')
+            ->with('success', 'Đăng xuất thành công!');
     }
 }

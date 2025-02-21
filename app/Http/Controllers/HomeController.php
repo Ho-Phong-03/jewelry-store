@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function checkOut(){
         $cart = session()->get('cart', []);
         if(empty($cart)) {
-            return redirect()->route('showCart')->with('error', 'Your cart is empty');
+            return redirect()->route('products.index')->with('error', 'Your cart is empty');
         }
         
         $total = 0;
@@ -157,7 +157,7 @@ class HomeController extends Controller
             }
         }
         session()->put('cart', $cart);
-        return redirect()->route('showCart')->with('success', 'Successful update of shopping carts');
+        return redirect()->route('products.index')->with('success', 'Successful update of shopping carts');
     }
 
 

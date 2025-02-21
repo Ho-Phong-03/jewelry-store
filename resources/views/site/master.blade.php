@@ -73,8 +73,8 @@
                 <div class="nav__box__modal__menu" id="nav-modal-menu">
                     <div class="nav__menu" id="nav-menu">
                         <ul class="nav__list">
-                            <li><a href="{{ route('showHomePage') }}"
-                                    class="nav__link {{ request()->routeIs('showHomePage') ? 'active' : '' }}">Home</a>
+                            <li><a href="{{ route('home') }}"
+                                    class="nav__link {{ request()->routeIs('home') ? 'active' : '' }}">Home</a>
                             </li>
                             @foreach ($categories as $category)
                                 <!-- Duyệt qua danh mục -->
@@ -126,20 +126,38 @@
                                     class="nav__item btn__user">
 
                                 <ul class="box__modal__user">
-                                    <li class="title__modal__user">
-                                        <h5>
-                                            <span>Hi</span>
-                                            <span>{{ auth()->user()->name }}</span>
-                                        </h5>
-                                    </li>
-                                    <li class="box__logout">
-                                        <div class="icon__modal__logout__user">
-                                            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                                        </div>
-                                        <div class="text__modal__logout__user">
-                                            <a href="{{ route('admin.login') }}">Logout</a>
-                                        </div>
-                                    </li>
+                                    @auth
+                                        <li class="title__modal__user">
+                                            <h5>
+                                                <span>Xin chào</span>
+                                                <span>{{ auth()->user()->name }}</span>
+                                            </h5>
+                                        </li>
+                                        <li class="box__logout">
+                                            <div class="icon__modal__logout__user">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                                            </div>
+                                            <div class="text__modal__logout__user">
+                                                <a href="{{ route('admin.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                    Đăng xuất
+                                                </a>
+                                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                </form>
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li class="title__modal__user">
+                                            <h5>
+                                                <a href="{{ route('admin.login') }}">Đăng nhập</a>
+                                            </h5>
+                                        </li>
+                                        <li class="title__modal__user">
+                                            <h5>
+                                                <a href="{{ route('admin.register') }}">Đăng ký</a>
+                                            </h5>
+                                        </li>
+                                    @endauth
                                 </ul>
                             </a>
 
@@ -187,7 +205,7 @@
                                     </div>
                                     <div class="mini__cart__footer">
                                         <div class="cart__btn view__cart">
-                                            <a href="{{ route('showCart') }}" class="cart__link cart__link_view">View
+                                            <a href="{{ route('products.index') }}" class="cart__link cart__link_view">View
                                                 cart</a>
                                         </div>
                                         <div class="cart__btn view__checkout">

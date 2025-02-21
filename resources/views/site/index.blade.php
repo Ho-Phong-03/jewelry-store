@@ -96,10 +96,10 @@
                                     <div class="product__item">
                                         <div class="single__product">
                                             <div class="product__thumb">
-                                                <a href="{{route('showDetailProduct', ['id' => $product->id])}}" class="primary__img">
+                                                <a href="{{route('product.show', ['product' => $product->id])}}" class="primary__img">
                                                     <img src="{{ asset('asset/users/images/products/' . $product->image) }}" alt="">
                                                 </a>
-                                                <a href="{{route('showDetailProduct', ['id' => $product->id])}}" class="secondary__img">
+                                                <a href="{{route('product.show', ['product' => $product->id])}}" class="secondary__img">
                                                     <img src="{{ asset('asset/users/images/products/' . $product->image_secondary) }}" alt="">
                                                 </a>
                                                 <div class="quick__button" id="btn-quick">
@@ -110,7 +110,7 @@
                                                 <div class="tag__cate">
                                                     <a href="#">Brand</a>
                                                 </div>
-                                                <a href="{{route('showDetailProduct', ['id' => $product->id])}}" class="product__title">
+                                                <a href="{{route('product.show', ['product' => $product->id])}}" class="product__title">
                                                     <h3 >
                                                         {{$product->name}}
                                                     </h3>

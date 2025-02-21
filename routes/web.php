@@ -20,31 +20,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => ''], function () {
-    Route::get('/', [HomeController::class, 'homePage'])->name('showHomePage');
-    Route::get('/cart', [HomeController::class, 'cart'])->name('showCart');
+Route::get('/', [HomeController::class, 'homePage'])->name('home');
+Route::get('/products/{category?}', [HomeController::class, 'product'])->name('products.index');
+Route::get('/product/{id}', [HomeController::class, 'detailProduct'])->name('product.show');
+Route::get('/search-suggestions', [HomeController::class, 'searchSuggestions'])->name('search.suggestions');
+
+Route::group(['prefix' => 'auth'], function () {
     Route::post('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
     Route::get('/checkout', [HomeController::class, 'checkOut'])->name('checkOut');
-    Route::get('product/{id}', [HomeController::class, 'detailProduct'])->name('showDetailProduct');
     Route::get('/products/{category?}/', [HomeController::class, 'product'])->name('showProduct');
-    Route::get('/search-suggestions', [HomeController::class, 'searchSuggestions'])->name('searchSuggestions');
     Route::get('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
     Route::post('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
     Route::get('/removeCartItem/{id}', [HomeController::class, 'removeCartItem'])->name('removeCartItem');
     Route::post('/process-checkout', [HomeController::class, 'processCheckout'])->name('processCheckout');
-
 });
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AdminController::class, 'check_login']);
+    Route::post('/login', [AdminController::class, 'check_login'])->name('admin.check_login');
     Route::get('/register', [AdminController::class, 'register'])->name('admin.register');
-    Route::post('/register', [AdminController::class, 'check_register']);
+    Route::post('/register', [AdminController::class, 'check_register'])->name('admin.check_register');
+    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
+    Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
     Route::resources([
         'category' => CategoryController::class,
@@ -52,11 +53,3 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
         'customer'=> CustomerController::class,
     ]);
 });
-
-
-
-
-
-
-
-

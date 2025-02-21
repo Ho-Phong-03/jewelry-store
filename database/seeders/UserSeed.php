@@ -25,7 +25,7 @@ class UserSeed extends Seeder
                 'address' => '123 Admin Street, City, Country',
                 'birthday' => '1990-01-01', // Ngày sinh
                 'gender' => '1', // 1 là Nam, 2 là Nữ
-                // 'role' => 'admin', // Quyền admin
+                'role' => 'admin', // Quyền admin
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -38,7 +38,7 @@ class UserSeed extends Seeder
                 'address' => '456 Test Avenue, City, Country',
                 'birthday' => '1995-05-15', // Ngày sinh
                 'gender' => '2', // 1 là Nam, 2 là Nữ
-                // 'role' => 'customer', // Quyền khách hàng
+                'role' => 'customer', // Quyền khách hàng
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

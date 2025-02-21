@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('address')->nullable();
             $table->date('birthday')->nullable();
             $table->tinyInteger('gender')->nullable()->default(1);
+            $table->enum('role', ['admin','customer'])->default('customer');
             $table->timestamps();
         });
     }

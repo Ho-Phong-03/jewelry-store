@@ -11,7 +11,7 @@
                         <div class="breadcrumb__content">
                             <h3>Shopping Cart</h3>
                             <ul>
-                                <li><a href="{{route('showHomePage')}}">home</a></li>
+                                <li><a href="{{route('home')}}">home</a></li>
                                 <li>&gt;</li>
                                 <li><a href="shop.html">shop</a></li>
                                 <li>&gt;</li>
@@ -58,8 +58,8 @@
                                                     @endphp
                                                     <tr>
                                                         <td class="product_remove"><a href="{{route('removeCartItem', $id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa!');"><i class="fa-solid fa-trash-can"></i></a></td>
-                                                        <td class="product_thumb"><a href="{{route('showDetailProduct', $id)}}"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
-                                                        <td class="product_name"><a href="{{route('showDetailProduct', $id)}}">{{ $details['name'] }}</a></td>
+                                                        <td class="product_thumb"><a href="{{route('product.show', $id)}}"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
+                                                        <td class="product_name"><a href="{{route('product.show', $id)}}">{{ $details['name'] }}</a></td>
                                                         <td class="product-price">${{ number_format($details['price'], 2) }}</td>
                                                         <td class="product_quantity"><label>Quantity</label> <input type="number" name="quantity[{{ $id }}]" value="{{ $details['quantity'] }}"></td>
                                                         <td class="product_total">${{ number_format($subtotal, 2) }}</td>
