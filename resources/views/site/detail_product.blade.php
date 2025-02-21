@@ -333,7 +333,7 @@
                                                             </a>
                                                         </li>
                                                         <li class="add__to__cart">
-                                                            <a href="{{route('addProductCart', ['id' => $product->id])}}" class="action__link">
+                                                            <a href="{{route('cart.add', ['id' => $product->id])}}" class="action__link">
                                                                 Add to cart
                                                             </a>
                                                         </li>

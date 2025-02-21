@@ -25,15 +25,16 @@ Route::get('/products/{category?}', [HomeController::class, 'product'])->name('p
 Route::get('/product/{id}', [HomeController::class, 'detailProduct'])->name('product.show');
 Route::get('/search-suggestions', [HomeController::class, 'searchSuggestions'])->name('search.suggestions');
 
-Route::group(['prefix' => 'auth'], function () {
-    Route::post('/update-cart', [HomeController::class, 'updateCart'])->name('updateCart');
-    Route::get('/checkout', [HomeController::class, 'checkOut'])->name('checkOut');
-    Route::get('/products/{category?}/', [HomeController::class, 'product'])->name('showProduct');
-    Route::get('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
-    Route::post('/addProductCart/{id}', [HomeController::class, 'addProductCart'])->name('addProductCart');
-    Route::get('/removeCartItem/{id}', [HomeController::class, 'removeCartItem'])->name('removeCartItem');
-    Route::post('/process-checkout', [HomeController::class, 'processCheckout'])->name('processCheckout');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/cart', [HomeController::class, 'cart'])->name('cart.index');
+    Route::post('/cart/update', [HomeController::class, 'updateCart'])->name('cart.update');
+    Route::get('/cart/add/{id}', [HomeController::class, 'addProductCart'])->name('cart.add');
+    Route::get('/cart/remove/{id}', [HomeController::class, 'removeCartItem'])->name('cart.remove');
+    Route::get('/checkout', [HomeController::class, 'checkOut'])->name('checkout.index');
+    Route::post('/checkout', [HomeController::class, 'processCheckout'])->name('checkout.process');
 });
+
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');

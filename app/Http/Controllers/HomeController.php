@@ -157,7 +157,7 @@ class HomeController extends Controller
             }
         }
         session()->put('cart', $cart);
-        return redirect()->route('products.index')->with('success', 'Successful update of shopping carts');
+        return redirect()->route('cart.index')->with('success', 'Successful update of shopping carts');
     }
 
 

@@ -27,7 +27,7 @@
         <!-- ================ Shopping Cart Area Start =========-->
         <section class="shopping__cart__section section">
             <div class="container">  
-                <form action="{{route('updateCart')}}" method="post" > 
+                <form action="{{route('cart.update')}}" method="post" > 
                     @csrf
                     <div class="row">
                         <div class="col-12">
@@ -57,7 +57,7 @@
                                                         $total += $subtotal;
                                                     @endphp
                                                     <tr>
-                                                        <td class="product_remove"><a href="{{route('removeCartItem', $id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa!');"><i class="fa-solid fa-trash-can"></i></a></td>
+                                                        <td class="product_remove"><a href="{{route('cart.remove', $id)}}" onclick="return confirm('Bạn có chắc chắn muốn xóa!');"><i class="fa-solid fa-trash-can"></i></a></td>
                                                         <td class="product_thumb"><a href="{{route('product.show', $id)}}"><img src="{{ asset('asset/users/images/products/' . $details['image']) }}" alt=""></a></td>
                                                         <td class="product_name"><a href="{{route('product.show', $id)}}">{{ $details['name'] }}</a></td>
                                                         <td class="product-price">${{ number_format($details['price'], 2) }}</td>
@@ -112,7 +112,7 @@
                                             <p class="cart__amount total__cart">${{ number_format($total+$ship,2)}}</p>
                                         </div>
                                         <div class="checkout__btn">
-                                            <a href="{{ route('checkOut') }}">Proceed to Checkout</a>
+                                            <a href="{{ route('checkout.index') }}">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

@@ -128,7 +128,7 @@
                                                                         </a>
                                                                     </li>
                                                                     <li class="add__to__cart">
-                                                                        <a href="{{route('addProductCart', ['id' => $product->id])}}" class="action__link">
+                                                                        <a href="{{route('cart.add', ['id' => $product->id])}}" class="action__link">
                                                                             Add to cart
                                                                         </a>
                                                                     </li>
@@ -155,7 +155,7 @@
                         <aside class="sidebar__product" id="sidebar-product">
                             <div class="aside__item">
                                 <div class="search__box__1">
-                                    <form class="form__modal__search" id="sidebar-search-form" action="{{ route('showProduct') }}" method="GET">
+                                    <form class="form__modal__search" id="sidebar-search-form" action="{{ route('products.index') }}" method="GET">
                                         <input type="text" 
                                                name="keyword" 
                                                class="modal__inp__search"

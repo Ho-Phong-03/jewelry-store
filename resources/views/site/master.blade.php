@@ -20,7 +20,7 @@
 <body>
     <div class="container mt-4">
         @if(session('success'))
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="success-alert">
                 {{session('success')}}
             </div>
         @endif
@@ -80,7 +80,7 @@
                                 <!-- Duyệt qua danh mục -->
                                 {{-- <li><a href="{{ route('showProduct', ['category' => $category->name]) }}" class="nav__link {{ request()->is('products/'.$category->slug) ? 'active' : '' }}">{{ $category->name }}</a></li> --}}
                                 <li>
-                                    <a href="{{ route('showProduct', ['category' => $category->name]) }}"
+                                    <a href="{{ route('products.index', ['category' => $category->name]) }}"
                                         class="nav__link {{ request()->is('products/' . $category->name) ? 'active' : '' }}">
                                         {{ $category->name }}
                                     </a>
@@ -104,7 +104,7 @@
                             <div class="nav__box__modal__search" id="nav-box-modal-search">
                                 <div class="nav__modal__search" id="nav-modal-search">
                                     <form class="form__modal__search" id="modal-search"
-                                        action="{{ route('showProduct') }}" method="GET">
+                                        action="{{ route('products.index') }}" method="GET">
                                         <input type="text" name="keyword" class="modal__inp__search"
                                             id="modal-inp-search" placeholder="Search..." autocomplete="off">
                                         <button type="submit" class="nav__modal__item" id="nav-btn-menu-search">
@@ -190,7 +190,7 @@
                                                         <span class="price__cart">${{ number_format($details['price'] * $details['quantity'], 2) }}</span>
                                                     </div>
                                                     <div class="cart__remove">
-                                                        <a href="{{ route('removeCartItem', ['id' => $id]) }}">
+                                                        <a href="{{ route('cart.remove', ['id' => $id]) }}">
                                                             <i class="icon__cart__remove fa-solid fa-xmark"></i>
                                                         </a>
                                                     </div>
@@ -205,11 +205,11 @@
                                     </div>
                                     <div class="mini__cart__footer">
                                         <div class="cart__btn view__cart">
-                                            <a href="{{ route('products.index') }}" class="cart__link cart__link_view">View
+                                            <a href="{{ route('cart.index') }}" class="cart__link cart__link_view">View
                                                 cart</a>
                                         </div>
-                                        <div class="cart__btn view__checkout">
-                                            <a href="{{route('checkOut')}}" class="cart__link cart__link_checkout">Checkout</a>
+                                        <div class="cart__btn view__">
+                                            <a href="{{route('checkout.index')}}" class="cart__link cart__link_checkout">Checkout</a>
                                         </div>
                                     </div>
                                     <!-- Close Button -->
@@ -513,8 +513,7 @@
                                         </div>
                                     `);
                                 });
-                                suggestions.show(); // Hiển thị khi có kết quả
-                            } else {
+                                suggestions.show();                                                
                                 suggestions.hide();
                             }
                         },
@@ -530,7 +529,7 @@
                 let productName = $(this).data("name");
                 $("#modal-inp-search").val(productName);
                 $("#search-suggestions").hide();
-                $("#modal-search").submit(); // Tự động submit form khi chọn sản phẩm
+                $("#modal-search").submit();
             });
 
             // Ẩn gợi ý khi click ra ngoài
@@ -548,6 +547,21 @@
                 suggestionsBox.classList.add("active");
             } else {
                 suggestionsBox.classList.remove("active");
+            }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Nếu có thông báo success
+            if($("#success-alert").length > 0) {
+                // Ban đầu hiện thông báo
+                $("#success-alert").css('opacity', '1');
+                
+                // Sau 3 giây, bắt đầu fade out trong 1 giây
+                setTimeout(function() {
+                    $("#success-alert").fadeOut('slow');
+                }, 3000);
             }
         });
     </script>
