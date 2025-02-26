@@ -17,8 +17,8 @@ class CategorySeed extends Seeder
     {
         // Dữ liệu cố định cho bảng categories
         $categories = [
-            ['name' => 'Necklace', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Earrings', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Necklace', 'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Bracelets', 'created_at' => now(), 'updated_at' => now()],
         ];
 
